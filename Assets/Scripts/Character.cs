@@ -9,6 +9,7 @@ public abstract class Character : Photon.MonoBehaviour
     public int maxHealth = 100;
     public float range = 10.0f;
     public float speed = 3.0f;
+    public float speedRate = 1.0f;
     public float rotationSpeed = 180.0f;
 
     public Weapon weapon;
@@ -34,7 +35,7 @@ public abstract class Character : Photon.MonoBehaviour
 
     protected void moveForward(float tpf)
     {
-        this.transform.Translate(this.transform.forward * this.speed * tpf, Space.World);
+        this.transform.Translate(this.transform.forward * this.speed * this.speedRate * tpf, Space.World);
     }
 
     public void takeDamage(Combinaison.ELEMENTS type, int amount)
@@ -80,5 +81,20 @@ public abstract class Character : Photon.MonoBehaviour
     protected virtual void death()
     {
         Debug.Log("Death of " + this.tag);
+    }
+
+    public void alterSpeedRate(float alterPower)
+    {
+        speedRate *= 1.0f + alterPower;
+    }
+
+    public void resetSpeedRate()
+    {
+        speedRate = 1.0f;
+    }
+
+    public void revertSpeedRate(float alterPower)
+    {
+        speedRate /= 1.0f + alterPower;
     }
 }
