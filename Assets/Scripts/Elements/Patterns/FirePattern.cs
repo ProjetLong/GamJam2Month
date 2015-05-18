@@ -1,9 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-class FirePattern : Pattern
+class FirePattern : IShootPattern
 {
+    public void shoot(Transform canon)
+    {
+        for (int i = 0; i < TweakManager.Instance.fireNbBullets; i++)
+        {
+            Vector3 direction = canon.forward;
+            direction = Quaternion.AngleAxis(Random.Range(-TweakManager.Instance.fireConeAngle, TweakManager.Instance.fireConeAngle), Vector3.up) * direction;
+            GameObject bullet = GameObject.Instantiate(TweakManager.Instance.bullet, canon.position, Quaternion.LookRotation(direction)) as GameObject;
+            GameObject.Destroy(bullet, TweakManager.Instance.bulletLife);
+        }
+    }
 }
