@@ -3,20 +3,22 @@ using System.Collections;
 
 public class Enemy : Character
 {
-
     public enum Type
     {
         DISTANCE,
         CAC
     };
 
+    #region Members
     public Type enemyType = Type.CAC;
     public Transform target;
+    public Transform playerTarget;
     private bool isWalking = false;
     private bool canAttack = true;
     public float attackCooldown = 1.5f;
 
     private NavMeshAgent navAgent;
+    #endregion
 
     protected override void Start()
     {
@@ -102,6 +104,8 @@ public class Enemy : Character
     protected override void death()
     {
         base.death();
+
+        EntitiesManager.Instance.zombieDied(this.gameObject);
         Destroy(this.gameObject);
     }
 
@@ -114,6 +118,25 @@ public class Enemy : Character
         if (other.tag.Equals("Player"))
         {
             this.target = other.gameObject.transform;
+            this.playerTarget = this.target;
         }
+    }
+
+    public void enterConfusion()
+    {
+        if (target == null)
+            return;
+
+        GameObject nearestZombie = EntitiesManager.Instance.getNearestZombie(this.transform);
+        target = nearestZombie.transform;
+    }
+
+    public void snapOutOfConfusion()
+    {
+        if (target == null
+            || playerTarget == null)
+            return;
+
+        target = playerTarget;
     }
 }

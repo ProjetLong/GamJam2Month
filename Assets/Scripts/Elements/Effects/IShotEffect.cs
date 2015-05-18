@@ -1,7 +1,7 @@
-﻿using System;
+﻿using UnityEngine;
 using System.Collections;
 
 public interface IShotEffect
 {
-    IEnumerator applyEffect(Enemy enemyScript);
+    IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform);
 }

@@ -25,5 +25,7 @@ public abstract class Spawner : MonoBehaviour
         spawned.transform.parent = this.transform;
         spawned.transform.position = this.transform.position;
         spawned.transform.rotation = this.transform.rotation;
+
+        EntitiesManager.Instance.newZombieSpawned(spawned);
     }
 }
