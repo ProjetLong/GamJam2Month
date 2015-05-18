@@ -1,10 +1,16 @@
-﻿using System;
+﻿using UnityEngine;
 using System.Collections;
 
 public class PoisonEffect : IShotEffect
 {
-    public IEnumerator applyEffect(Enemy enemyScript)
+    #region Members
+    public float duration = 0.0f;
+    #endregion
+
+    public IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform)
     {
-        yield return null;
+        enemyScript.enterConfusion();
+        yield return new WaitForSeconds(duration);
+        enemyScript.snapOutOfConfusion();
     }
 }
