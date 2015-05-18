@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : Character
-{
+public class Enemy : Character {
+    #region Public properties
+    [Header ("Links")]
+    [SerializeField]
+    [Tooltip ("Death FX")]
+    GameObject _deathFXPrefab;
+    #endregion
 
     public enum Type
     {
@@ -101,6 +106,8 @@ public class Enemy : Character
 
     protected override void death()
     {
+        GameObject deathFXObject = GameObject.Instantiate (_deathFXPrefab, transform.position, transform.rotation) as GameObject;
+        Destroy (deathFXObject, 1);
         base.death();
         Destroy(this.gameObject);
     }

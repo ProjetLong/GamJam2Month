@@ -100,6 +100,10 @@ public class PlayerMovement : Photon.MonoBehaviour
             //transform.rotation = newRotation;
         }
         #endregion
+
+        #region Animation
+        GetComponentInChildren<Animator> ().SetBool ("IsWalking", 0 != h || 0 != v);
+        #endregion
     }
 
     private void SyncedTransform()

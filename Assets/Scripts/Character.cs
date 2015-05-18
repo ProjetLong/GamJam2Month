@@ -3,6 +3,7 @@ using System.Collections;
 
 public abstract class Character : Photon.MonoBehaviour
 {
+    
 
     public int health;
     public int maxHealth = 100;
@@ -76,6 +77,7 @@ public abstract class Character : Photon.MonoBehaviour
 
     protected virtual void death()
     {
+        GetComponentInChildren<Animator> ().SetTrigger ("Death");
         Debug.Log("Death of " + this.tag);
     }
 }
