@@ -4,7 +4,7 @@ using System.Collections;
 class PoisonPattern : IShootPattern
 {
     private RaycastHit hitInfo;
-    public void shoot(Transform canon)
+    public IEnumerator shoot(Transform canon)
     {
         if (Physics.Raycast(canon.position, canon.forward, out hitInfo))
         {
@@ -17,5 +17,6 @@ class PoisonPattern : IShootPattern
             GameObject poison = GameObject.Instantiate(TweakManager.Instance.poisonEffect, spawnPosition, Quaternion.identity) as GameObject;
             GameObject.Destroy(poison, TweakManager.Instance.poisonDuration);
         }
+        yield return null;
     }
 }

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections;
 using UnityEngine;
 
 class IcePattern : IShootPattern
 {
-    public void shoot(Transform canon)
+    public IEnumerator shoot(Transform canon)
     {
-
+        yield return null;
     }
 }

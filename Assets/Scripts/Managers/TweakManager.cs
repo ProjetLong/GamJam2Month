@@ -29,4 +29,7 @@ public class TweakManager : MonoBehaviour
     //fire
     public float fireConeAngle = 0.0f;
     public int fireNbBullets = 5;
+    //air
+    public int airNbBullets = 3;
+    public float airBulletInterval = 0.25f;
 }
