@@ -19,6 +19,8 @@ public class PlayerShooting : Photon.MonoBehaviour
 
     public GameObject explosion;
 
+    User playerScript;
+
 
     void Awake()
     {
@@ -31,7 +33,7 @@ public class PlayerShooting : Photon.MonoBehaviour
 
     void Start()
     {
-
+        playerScript = transform.parent.GetComponent<User>();
     }
 
     void Update()
@@ -85,7 +87,7 @@ public class PlayerShooting : Photon.MonoBehaviour
             Enemy enemy = shootHit.collider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.takeDamage(Weapon.DamageType.PHYSIC, this.damagePerShot);
+                enemy.takeDamage(playerScript.element, this.damagePerShot);
             }
             gunLine.SetPosition(1, shootHit.point);
             if (this.explosion)
