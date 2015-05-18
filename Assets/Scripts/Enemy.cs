@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : Character {
+public class Enemy : Character
+{
     #region Public properties
-    [Header ("Links")]
+    [Header("Links")]
     [SerializeField]
-    [Tooltip ("Death FX")]
+    [Tooltip("Death FX")]
     GameObject _deathFXPrefab;
     #endregion
 
@@ -15,20 +16,23 @@ public class Enemy : Character {
         CAC
     };
 
+    #region Members
     public Type enemyType = Type.CAC;
     public Transform target;
+    public Transform playerTarget;
     private bool isWalking = false;
     private bool canAttack = true;
     public float attackCooldown = 1.5f;
 
     private NavMeshAgent navAgent;
+    #endregion
 
     protected override void Start()
     {
         base.Start();
         this.navAgent = this.GetComponent<NavMeshAgent>();
         this.navAgent.stoppingDistance = this.range;
-        this.navAgent.speed = this.speed;
+        this.navAgent.speed = this.speed * this.speedRate;
         this.navAgent.angularSpeed = this.rotationSpeed;
     }
 
@@ -91,7 +95,7 @@ public class Enemy : Character {
             Character user = this.target.GetComponent<Character>();
             if (user)
             {
-                user.takeDamage(this.weapon.damageType, this.weapon.damageValue);
+                user.takeDamage(this.element, this.weapon.damageValue);
             }
             StartCoroutine(this.setAttackOnCooldown());
         }
@@ -106,9 +110,11 @@ public class Enemy : Character {
 
     protected override void death()
     {
-        GameObject deathFXObject = GameObject.Instantiate (_deathFXPrefab, transform.position, transform.rotation) as GameObject;
-        Destroy (deathFXObject, 1);
+        GameObject deathFXObject = GameObject.Instantiate(_deathFXPrefab, transform.position, transform.rotation) as GameObject;
+        Destroy(deathFXObject, 1);
         base.death();
+
+        EntitiesManager.Instance.zombieDied(this.gameObject);
         Destroy(this.gameObject);
     }
 
@@ -121,6 +127,25 @@ public class Enemy : Character {
         if (other.tag.Equals("Player"))
         {
             this.target = other.gameObject.transform;
+            this.playerTarget = this.target;
         }
+    }
+
+    public void enterConfusion()
+    {
+        if (target == null)
+            return;
+
+        GameObject nearestZombie = EntitiesManager.Instance.getNearestZombie(this.transform);
+        target = nearestZombie.transform;
+    }
+
+    public void snapOutOfConfusion()
+    {
+        if (target == null
+            || playerTarget == null)
+            return;
+
+        target = playerTarget;
     }
 }

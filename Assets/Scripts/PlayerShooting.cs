@@ -2,7 +2,7 @@
 
 public class PlayerShooting : Photon.MonoBehaviour
 {
-    public int damagePerShot = 20;
+
     public float timeBetweenBullets = 0.15f;
     public float range = 100f;
 
@@ -19,6 +19,8 @@ public class PlayerShooting : Photon.MonoBehaviour
 
     public GameObject explosion;
 
+    User playerScript;
+
 
     void Awake()
     {
@@ -31,7 +33,7 @@ public class PlayerShooting : Photon.MonoBehaviour
 
     void Start()
     {
-
+        playerScript = transform.parent.GetComponent<User>();
     }
 
     void Update()
@@ -67,7 +69,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     {
         timer = 0f;
 
-        transform.parent.GetComponentInChildren<Animator> ().SetTrigger ("Shoot");
+        transform.parent.GetComponentInChildren<Animator>().SetTrigger("Shoot");
         gunAudio.Play();
 
         gunLight.enabled = true;
@@ -83,11 +85,17 @@ public class PlayerShooting : Photon.MonoBehaviour
         Debug.DrawRay(transform.position, transform.position + transform.forward * 10, Color.red, 0.5f);
         if (Physics.Raycast(shootRay, out shootHit, range))
         {
-            Enemy enemy = shootHit.collider.GetComponent<Enemy>();
-            if (enemy != null)
+            User user = shootHit.collider.GetComponent<User>();
+            if (user)
             {
-                enemy.takeDamage(Weapon.DamageType.PHYSIC, this.damagePerShot);
+                this.playerScript.currentCombinaison.transfertTo(user);
             }
+            else
+            {
+                this.playerScript.currentCombinaison.pattern.shoot(this.transform);
+            }
+
+            //to remove
             gunLine.SetPosition(1, shootHit.point);
             if (this.explosion)
             {
