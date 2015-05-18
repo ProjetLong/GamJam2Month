@@ -39,4 +39,9 @@ public class Combinaison
         effect = null;
         element = ELEMENTS.COUNT;
     }
+
+    public void applyDamages()
+    {
+
+    }
 }
