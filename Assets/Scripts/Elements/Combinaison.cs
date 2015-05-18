@@ -10,7 +10,7 @@ public class Combinaison
     #region Members
     private ELEMENTS element = ELEMENTS.COUNT;
     private Effect effect;
-    private Pattern pattern;
+    private IShootPattern pattern;
     #endregion
 
     public int getLevel()
