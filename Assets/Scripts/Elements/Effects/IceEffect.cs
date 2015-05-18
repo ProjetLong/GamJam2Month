@@ -12,7 +12,7 @@ public class IceEffect : IShotEffect
 
     public IEnumerator applyEffect(Enemy enemyScript)
     {
-        // Carefu
+        // We format the tweaked value
         slowRate /= 100.0f;
         slowRate = -slowRate;
 
