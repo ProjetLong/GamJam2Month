@@ -4,6 +4,7 @@ using System.Collections;
 public abstract class Character : Photon.MonoBehaviour
 {
 
+    #region Members
     public int health;
     public int maxHealth = 100;
     public float range = 10.0f;
@@ -13,7 +14,9 @@ public abstract class Character : Photon.MonoBehaviour
     public Weapon weapon;
     protected Animator anim;
     public GameObject damageTextPrefab;
+    public Combinaison.ELEMENTS element;
 
+    #endregion
     protected virtual void Start()
     {
         if (this.health == 0)

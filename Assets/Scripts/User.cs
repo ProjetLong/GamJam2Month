@@ -7,11 +7,42 @@ public class User : Character
     public int resources = 50;
     public int score = 0;
     public List<Weapon> availableWeapons;
+    public Combinaison currentCombinaison;
 
     protected override void Start()
     {
         base.Start();
         this.updateHealth();
+        this.assignElement();
+    }
+
+    private void assignElement()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        int rng = 0;
+
+        if (players.Length <= 4)
+        {
+            int[] alreadyAssignedElements = new int[players.Length];
+
+            for (int i = 0; i < players.Length; ++i)
+            {
+                alreadyAssignedElements[i] = (int)players[i].GetComponent<User>().element;
+            }
+
+
+            while (alreadyAssignedElements.Contains(rng))
+            {
+                rng = Random.Range(0, (int)Combinaison.ELEMENTS.COUNT - 1);
+
+            }
+        }
+        else
+        {
+            rng = Random.Range(0, (int)Combinaison.ELEMENTS.COUNT - 1);
+        }
+
+        this.element = (Combinaison.ELEMENTS)rng;
     }
 
     public void respawn()
