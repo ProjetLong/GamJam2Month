@@ -40,8 +40,7 @@ public class Combinaison
         element = ELEMENTS.COUNT;
     }
 
-    public void applyDamages()
+    public void transfertTo(User user)
     {
-
     }
 }

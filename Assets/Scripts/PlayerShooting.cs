@@ -2,7 +2,7 @@
 
 public class PlayerShooting : Photon.MonoBehaviour
 {
-    public int damagePerShot = 20;
+
     public float timeBetweenBullets = 0.15f;
     public float range = 100f;
 
@@ -69,7 +69,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     {
         timer = 0f;
 
-        transform.parent.GetComponentInChildren<Animator> ().SetTrigger ("Shoot");
+        transform.parent.GetComponentInChildren<Animator>().SetTrigger("Shoot");
         gunAudio.Play();
 
         gunLight.enabled = true;
@@ -85,19 +85,14 @@ public class PlayerShooting : Photon.MonoBehaviour
         Debug.DrawRay(transform.position, transform.position + transform.forward * 10, Color.red, 0.5f);
         if (Physics.Raycast(shootRay, out shootHit, range))
         {
-            Enemy enemy = shootHit.collider.GetComponent<Enemy>();
-            if (enemy)
+            User user = shootHit.collider.GetComponent<User>();
+            if (user)
             {
-                //TODO: apply combinaison
-                enemy.takeDamage(playerScript.element, this.damagePerShot);
+                this.playerScript.currentCombinaison.transfertTo(user);
             }
             else
             {
-                User user = shootHit.collider.GetComponent<User>();
-                if (user)
-                {
-                    //TODO: transfer comninaison
-                }
+                this.playerScript.currentCombinaison.pattern.shoot(this.transform);
             }
 
             //to remove
