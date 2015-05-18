@@ -1,10 +1,21 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class IceEffect : IShotEffect
 {
+    #region Members
+    [Range(0, 100)]
+    public float slowRate = 10.0f;
+    public float duration = 10.0f;
+    public float interval = 1.0f;
+    #endregion
+
     public IEnumerator applyEffect(Enemy enemyScript)
     {
-        yield return null;
+        enemyScript.alterSpeedRate(-slowRate);
+
+        yield return new WaitForSeconds(interval);
+
+        enemyScript.revertSpeedRate(-slowRate);
     }
 }

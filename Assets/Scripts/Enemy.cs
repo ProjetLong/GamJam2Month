@@ -23,7 +23,7 @@ public class Enemy : Character
         base.Start();
         this.navAgent = this.GetComponent<NavMeshAgent>();
         this.navAgent.stoppingDistance = this.range;
-        this.navAgent.speed = this.speed;
+        this.navAgent.speed = this.speed * this.speedRate;
         this.navAgent.angularSpeed = this.rotationSpeed;
     }
 
