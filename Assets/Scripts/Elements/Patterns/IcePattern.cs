@@ -5,6 +5,7 @@ class IcePattern : IShootPattern
 {
     public IEnumerator shoot(Transform canon)
     {
+
         yield return null;
     }
 }
