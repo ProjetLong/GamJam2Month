@@ -2,6 +2,10 @@
 
 public class PlayerMovement : Photon.MonoBehaviour
 {
+    [Header ("Links")]
+    [SerializeField]
+    [Tooltip ("Layer of the floor")]
+    LayerMask _floorMask;
 
     private static Quaternion workingQuaternion = new Quaternion();
     public float speed = 6.0f;
@@ -16,23 +20,18 @@ public class PlayerMovement : Photon.MonoBehaviour
 
     private Vector3 movement;
     //private Animator anim;
-    private int floorMask;
+    //private int floorMask;
     private float camRayLength = 100.0f;
     private Rigidbody playerRigidbody;
     public Vector3 offset = new Vector3(0.0f, 6.0f, -8.0f);
-    public Joystick joyStick;
     public bool editorMode;
     private Quaternion targetRotation;
     private bool canRotate = false;
 
     void Start()
     {
-        if (this.joyStick == null)
-        {
-            GameObject joystickGO = GameObject.FindGameObjectWithTag("Joystick");
-            this.joyStick = joystickGO.GetComponent<Joystick>();
-        }
-        this.floorMask = LayerMask.GetMask("Floor");
+        
+        //this.floorMask = LayerMask.GetMask("Floor");
         //anim = GetComponent<Animator>();
         this.playerRigidbody = GetComponent<Rigidbody>();
         this.targetRotation = this.transform.rotation;
@@ -49,32 +48,24 @@ public class PlayerMovement : Photon.MonoBehaviour
 
     void InputMovement()
     {
-        float h;
+        /*float h;
         float v;
-        if (this.editorMode)
-        {
-            h = Input.GetAxis("Horizontal");
-            v = Input.GetAxis("Vertical");
-        }
-        else
-        {
-            h = this.joyStick.position.x;
-            v = this.joyStick.position.y;
-        }
-
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+        
         if (h != 0 || v != 0)
         {
             //rotation
-            this.targetRotation = (Quaternion.AngleAxis(Mathf.Atan2(h, v) * Mathf.Rad2Deg, Vector3.up));
-            this.canRotate = true;
+            //this.targetRotation = (Quaternion.AngleAxis(Mathf.Atan2(h, v) * Mathf.Rad2Deg, Vector3.up));
+            //this.canRotate = true;
             //movement
             this.playerRigidbody.MovePosition(this.playerRigidbody.position + transform.forward * this.speed * Time.fixedDeltaTime);
             ////this.transform.Translate(transform.forward * this.speed * Time.fixedDeltaTime, Space.World);
             /*if (NetworkManager.Instance.isConnected)
                 NetworkManager.Instance.sendPosition(this.playerRigidbody.position);*/
-        }
+        //}
 
-        if (this.canRotate)
+        /*if (this.canRotate)
         {
             this.transform.rotation = Quaternion.Lerp(transform.rotation, this.targetRotation, this.rotationSpeed * Time.fixedDeltaTime);
             if (Mathf.Abs(this.targetRotation.x - this.transform.rotation.x) <= Quaternion.kEpsilon)
@@ -82,7 +73,37 @@ public class PlayerMovement : Photon.MonoBehaviour
                 this.canRotate = false;
                 this.transform.rotation = this.targetRotation;
             }
+        }*/
+
+        #region Movement
+        float h, v;
+        h = Input.GetAxis ("Horizontal");
+        v = Input.GetAxis ("Vertical");
+        Vector3 move = new Vector3 (h, 0, v);
+        move.Normalize ();
+        Vector3 newPos = transform.position + move * speed * Time.fixedDeltaTime;
+        transform.position = newPos;
+        // Physic hack to avoid player auto move
+        GetComponent<Rigidbody> ().velocity = Vector3.zero;
+        #endregion
+
+        #region Static rotation
+        // Rotation with mouse
+        Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+        RaycastHit floorHit;
+
+        if (Physics.Raycast (camRay, out floorHit, 100, _floorMask)) {
+            Vector3 playerToMouse = floorHit.point - transform.position;
+            playerToMouse.y = 0f;
+            Quaternion newRotation = Quaternion.LookRotation (playerToMouse);
+            GetComponent<Rigidbody> ().MoveRotation (newRotation);
+            //transform.rotation = newRotation;
         }
+        #endregion
+
+        #region Animation
+        GetComponentInChildren<Animator> ().SetBool ("IsWalking", 0 != h || 0 != v);
+        #endregion
     }
 
     private void SyncedTransform()
@@ -90,21 +111,6 @@ public class PlayerMovement : Photon.MonoBehaviour
         syncTime += Time.deltaTime;
         playerRigidbody.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
         playerRigidbody.rotation = Quaternion.Lerp(syncStartRotation, syncEndRotation, syncTime / syncDelay);
-    }
-
-    private void updateRotation()
-    {
-        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit floorHit;
-
-        if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
-        {
-            Vector3 playerToMouse = floorHit.point - transform.position;
-            playerToMouse.y = 0.0f;
-
-            workingQuaternion.SetLookRotation(playerToMouse);
-            playerRigidbody.MoveRotation(workingQuaternion);
-        }
     }
 
     public void moveTo(float x, float y, float z)

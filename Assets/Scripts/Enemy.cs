@@ -3,6 +3,13 @@ using System.Collections;
 
 public class Enemy : Character
 {
+    #region Public properties
+    [Header("Links")]
+    [SerializeField]
+    [Tooltip("Death FX")]
+    GameObject _deathFXPrefab;
+    #endregion
+
     public enum Type
     {
         DISTANCE,
@@ -103,6 +110,8 @@ public class Enemy : Character
 
     protected override void death()
     {
+        GameObject deathFXObject = GameObject.Instantiate(_deathFXPrefab, transform.position, transform.rotation) as GameObject;
+        Destroy(deathFXObject, 1);
         base.death();
 
         EntitiesManager.Instance.zombieDied(this.gameObject);

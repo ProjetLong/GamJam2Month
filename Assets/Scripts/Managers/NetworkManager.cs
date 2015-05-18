@@ -79,7 +79,7 @@ public class NetworkManager : Photon.MonoBehaviour
                 break;
             case "Game":
                 // Spawn player
-                GameObject player = PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.up * 5, Quaternion.identity, 0);
+                GameObject player = PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.up * 1, Quaternion.identity, 0);
                 GameObject entities = GameObject.Find("Players");
                 player.transform.parent = entities.transform;
 
@@ -95,8 +95,8 @@ public class NetworkManager : Photon.MonoBehaviour
         }
     }
 
-    void OnLeftRoom()
-    {
+    void OnLeftRoom () {
+        
     }
     #endregion
 

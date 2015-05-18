@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class User : Character
 {
+    #region Public properties
+    
+    #endregion
+
     public int resources = 50;
     public int score = 0;
     public List<Weapon> availableWeapons;
@@ -58,6 +62,7 @@ public class User : Character
     protected override void modifyHealth(int amount)
     {
         base.modifyHealth(amount);
+        if (amount < health) GetComponentInChildren<Animator> ().SetTrigger ("Hurted");
         this.updateHealth();
     }
 

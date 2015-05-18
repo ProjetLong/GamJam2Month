@@ -69,6 +69,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     {
         timer = 0f;
 
+        transform.parent.GetComponentInChildren<Animator> ().SetTrigger ("Shoot");
         gunAudio.Play();
 
         gunLight.enabled = true;
