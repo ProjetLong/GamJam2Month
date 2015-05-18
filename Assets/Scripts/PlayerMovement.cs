@@ -24,7 +24,6 @@ public class PlayerMovement : Photon.MonoBehaviour
     public bool editorMode;
     private Quaternion targetRotation;
     private bool canRotate = false;
-    // public bool isMine = false;
 
     void Start()
     {
