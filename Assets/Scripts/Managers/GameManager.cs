@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Impossible to load scene " + sceneName);
         PhotonNetwork.isMessageQueueRunning = false;
         this.loading = Application.LoadLevelAsync(sceneName);
+        SoundManager.instance.PlayMusic ();
     }
 
     void OnLevelWasLoaded(int level)
