@@ -32,4 +32,6 @@ public class TweakManager : MonoBehaviour
     //air
     public int airNbBullets = 3;
     public float airBulletInterval = 0.25f;
+    //ice
+    public float iceLaserDuration = 10.0f;
 }

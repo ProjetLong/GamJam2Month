@@ -85,10 +85,21 @@ public class PlayerShooting : Photon.MonoBehaviour
         if (Physics.Raycast(shootRay, out shootHit, range))
         {
             Enemy enemy = shootHit.collider.GetComponent<Enemy>();
-            if (enemy != null)
+            if (enemy)
             {
+                //TODO: apply combinaison
                 enemy.takeDamage(playerScript.element, this.damagePerShot);
             }
+            else
+            {
+                User user = shootHit.collider.GetComponent<User>();
+                if (user)
+                {
+                    //TODO: transfer comninaison
+                }
+            }
+
+            //to remove
             gunLine.SetPosition(1, shootHit.point);
             if (this.explosion)
             {
