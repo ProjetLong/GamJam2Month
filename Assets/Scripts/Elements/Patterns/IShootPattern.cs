@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public interface IShootPattern
 {
-    void shoot(Transform canon);
+    IEnumerator shoot(Transform canon);
 }

@@ -8,9 +8,9 @@ public class Combinaison
     public enum ELEMENTS { FIRE = 0, AIR, POISON, ICE, COUNT };
 
     #region Members
-    private ELEMENTS element = ELEMENTS.COUNT;
-    private IShotEffect effect;
-    private IShootPattern pattern;
+    public ELEMENTS element = ELEMENTS.COUNT;
+    public IShotEffect effect;
+    public IShootPattern pattern;
     #endregion
 
     public int getLevel()
