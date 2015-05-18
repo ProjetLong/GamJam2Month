@@ -92,7 +92,8 @@ public class PlayerShooting : Photon.MonoBehaviour
             }
             else
             {
-                this.playerScript.currentCombinaison.pattern.shoot(this.transform);
+                if (this.playerScript.currentCombinaison.pattern != null)
+                    StartCoroutine(this.playerScript.currentCombinaison.pattern.shoot(this.transform));
             }
 
             //to remove

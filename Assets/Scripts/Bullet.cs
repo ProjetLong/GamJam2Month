@@ -18,7 +18,8 @@ public class Bullet : MonoBehaviour
         {
             Enemy enemyScript = other.collider.GetComponent<Enemy>();
             enemyScript.takeDamage(combinaison.element, this.damagePerShot);
-            combinaison.effect.applyEffect(enemyScript, this.transform);
+            if (combinaison.effect != null)
+                StartCoroutine(combinaison.effect.applyEffect(enemyScript, this.transform));
         }
     }
 }
