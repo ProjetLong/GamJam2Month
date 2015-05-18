@@ -37,7 +37,7 @@ public abstract class Character : Photon.MonoBehaviour
         this.transform.Translate(this.transform.forward * this.speed * tpf, Space.World);
     }
 
-    public void takeDamage(Weapon.DamageType type, int amount)
+    public void takeDamage(Combinaison.ELEMENTS type, int amount)
     {
         this.modifyHealth(amount);
         if (!isAlive())

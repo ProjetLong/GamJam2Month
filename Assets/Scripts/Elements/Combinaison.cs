@@ -9,7 +9,7 @@ public class Combinaison
 
     #region Members
     private ELEMENTS element = ELEMENTS.COUNT;
-    private Effect effect;
+    private IShotEffect effect;
     private IShootPattern pattern;
     #endregion
 

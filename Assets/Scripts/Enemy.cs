@@ -86,7 +86,7 @@ public class Enemy : Character
             Character user = this.target.GetComponent<Character>();
             if (user)
             {
-                user.takeDamage(this.weapon.damageType, this.weapon.damageValue);
+                user.takeDamage(this.element, this.weapon.damageValue);
             }
             StartCoroutine(this.setAttackOnCooldown());
         }
