@@ -18,7 +18,7 @@ public class weaponController : MonoBehaviour
     private float vibratingAimLoss; //shootingAimLoss with firing vibration.
     private bool isSprinting;
     //External scripts.
-    private crossHair crosshairScript;
+    private crosshair crosshairScript;
     private soldierMovement soldierMovementScript;
     private crouchController crouchControllerScript;
     private health healthScript;
@@ -83,7 +83,7 @@ public class weaponController : MonoBehaviour
         accuracyLossTarget += vibratingAimLoss;
         accuracyLossTarget += Mathf.Pow(Mathf.Abs(forwardSpeed * 2.0f + strafeSpeed * 2.0f), 0.1f);
         accuracyLossTarget += Mathf.Pow(Mathf.Pow(Mathf.Abs(turnSpeed), 2.3f) / Mathf.Pow(10, 4), 0.35f);
-        accuracyLossTarget += (1 - crouchControllerScript.globalCrouchBlend) * 0.5;
+        accuracyLossTarget += (1.0f - crouchControllerScript.globalCrouchBlend) * 0.5f;
         accuracyLossTarget *= accuracyLossMultiplier;
         if (accuracyLoss > accuracyLossTarget)
         {
