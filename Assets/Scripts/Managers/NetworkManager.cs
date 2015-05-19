@@ -27,7 +27,6 @@ public class NetworkManager : Photon.MonoBehaviour
     }
 
     public string version = "0.1";
-    private static string gameId = "virus-iaad396bmk2vohrpvimqa";
 
     public GameObject playerPrefab;
     public string playerName;
@@ -95,8 +94,9 @@ public class NetworkManager : Photon.MonoBehaviour
         }
     }
 
-    void OnLeftRoom () {
-        
+    void OnLeftRoom()
+    {
+
     }
     #endregion
 

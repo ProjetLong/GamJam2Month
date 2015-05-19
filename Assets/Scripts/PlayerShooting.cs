@@ -20,6 +20,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     public GameObject explosion;
 
     User playerScript;
+    Animator anim;
 
 
     void Awake()
@@ -34,6 +35,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     void Start()
     {
         playerScript = transform.parent.GetComponent<User>();
+        this.anim = this.playerScript.transform.FindChild("Mesh").GetComponent<Animator>();
     }
 
     void Update()
@@ -69,7 +71,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     {
         timer = 0f;
 
-        transform.parent.GetComponentInChildren<Animator>().SetTrigger("Shoot");
+        this.anim.SetTrigger("Shoot");
         gunAudio.Play();
 
         gunLight.enabled = true;
@@ -88,7 +90,14 @@ public class PlayerShooting : Photon.MonoBehaviour
             User user = shootHit.collider.GetComponent<User>();
             if (user)
             {
+                if (this.playerScript.currentCombinaison == null)
+                {
+                    this.playerScript.currentCombinaison = new Combinaison();
+                }
+
+                this.playerScript.currentCombinaison.levelUp(this.playerScript.element);
                 this.playerScript.currentCombinaison.transfertTo(user);
+                this.playerScript.currentCombinaison = null;
             }
             else
             {

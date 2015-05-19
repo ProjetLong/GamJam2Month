@@ -2,12 +2,11 @@
 
 public class PlayerMovement : Photon.MonoBehaviour
 {
-    [Header ("Links")]
+    [Header("Links")]
     [SerializeField]
-    [Tooltip ("Layer of the floor")]
+    [Tooltip("Layer of the floor")]
     LayerMask _floorMask;
 
-    private static Quaternion workingQuaternion = new Quaternion();
     public float speed = 6.0f;
     public float rotationSpeed = 1.0f;
     private float lastSynchronizationTime = 0f;
@@ -25,16 +24,13 @@ public class PlayerMovement : Photon.MonoBehaviour
     private Rigidbody playerRigidbody;
     public Vector3 offset = new Vector3(0.0f, 6.0f, -8.0f);
     public bool editorMode;
-    private Quaternion targetRotation;
-    private bool canRotate = false;
 
     void Start()
     {
-        
+
         //this.floorMask = LayerMask.GetMask("Floor");
         //anim = GetComponent<Animator>();
         this.playerRigidbody = GetComponent<Rigidbody>();
-        this.targetRotation = this.transform.rotation;
     }
 
     void FixedUpdate()
@@ -77,32 +73,33 @@ public class PlayerMovement : Photon.MonoBehaviour
 
         #region Movement
         float h, v;
-        h = Input.GetAxis ("Horizontal");
-        v = Input.GetAxis ("Vertical");
-        Vector3 move = new Vector3 (h, 0, v);
-        move.Normalize ();
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+        Vector3 move = new Vector3(h, 0, v);
+        move.Normalize();
         Vector3 newPos = transform.position + move * speed * Time.fixedDeltaTime;
         transform.position = newPos;
         // Physic hack to avoid player auto move
-        GetComponent<Rigidbody> ().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         #endregion
 
         #region Static rotation
         // Rotation with mouse
-        Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit floorHit;
 
-        if (Physics.Raycast (camRay, out floorHit, 100, _floorMask)) {
+        if (Physics.Raycast(camRay, out floorHit, 100, _floorMask))
+        {
             Vector3 playerToMouse = floorHit.point - transform.position;
             playerToMouse.y = 0f;
-            Quaternion newRotation = Quaternion.LookRotation (playerToMouse);
-            GetComponent<Rigidbody> ().MoveRotation (newRotation);
+            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
+            GetComponent<Rigidbody>().MoveRotation(newRotation);
             //transform.rotation = newRotation;
         }
         #endregion
 
         #region Animation
-        GetComponentInChildren<Animator> ().SetBool ("IsWalking", 0 != h || 0 != v);
+        GetComponentInChildren<Animator>().SetBool("IsWalking", 0 != h || 0 != v);
         #endregion
     }
 
