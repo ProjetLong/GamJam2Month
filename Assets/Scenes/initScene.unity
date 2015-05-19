@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 0.1
-  playerPrefab: {fileID: 135804, guid: 27f47e7a7dcc3394a8139056f7b5139d, type: 2}
+  playerPrefab: {fileID: 146182, guid: 6081163b2174b884e8d60113ada9a5e7, type: 2}
   playerName: tacos
   roomToJoin: Lobby
 --- !u!1 &753857305
@@ -1733,6 +1733,10 @@ Prefab:
       propertyPath: poisonEffect
       value: 
       objectReference: {fileID: 120792, guid: 66b67447901f9af4cad4b01cfc1ef887, type: 2}
+    - target: {fileID: 11402250, guid: 14a1507ff95571a4bb72bf76d2a5c6e0, type: 2}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 146182, guid: 6081163b2174b884e8d60113ada9a5e7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14a1507ff95571a4bb72bf76d2a5c6e0, type: 2}
   m_RootGameObject: {fileID: 1035610810}
