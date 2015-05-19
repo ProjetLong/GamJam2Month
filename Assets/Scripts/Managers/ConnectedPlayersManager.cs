@@ -46,6 +46,8 @@ public class ConnectedPlayersManager : Photon.MonoBehaviour
         txt.text = name;
         txt.transform.SetParent(this.connectedPlayersContent.transform, false);
         this.connectedPlayers.Add(name, txt);
+
+        GUIManager_Lobby.Instance.enablePlayButton();
     }
 
     public void addPlayer(string name)

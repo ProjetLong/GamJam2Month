@@ -76,4 +76,7 @@ public class GUIManager_Lobby : Photon.MonoBehaviour
         this.hideInvitationPanel();
     }
 
+    public void enablePlayButton() {
+        transform.FindChild("Play").GetComponent<Button>().interactable = true;
+    }
 }
