@@ -147,14 +147,13 @@ public class PlayerShooting : Photon.MonoBehaviour
     private void shootAlly(User user)
     {
 
-        /* if (this.playerScript.currentCombinaison == null)
-         {
-             this.playerScript.currentCombinaison = new Combinaison();
-         }
+        if (this.playerScript.currentCombinaison == null)
+        {
+            this.playerScript.currentCombinaison = new Combinaison();
+        }
 
-         this.playerScript.currentCombinaison.levelUp(this.playerScript.element);
-         this.playerScript.currentCombinaison.transfertTo(user);
-         this.playerScript.currentCombinaison = null;*/
+        user.updateCombinaison(this.playerScript.currentCombinaison);
+        this.playerScript.combinaisonTransfered();
 
         if (this.photonView.isMine)
             this.photonView.RPC("shootAlly", PhotonTargets.Others, user);
