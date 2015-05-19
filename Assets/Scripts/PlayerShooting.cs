@@ -44,9 +44,16 @@ public class PlayerShooting : Photon.MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+            if (timer >= timeBetweenBullets && Time.timeScale != 0)
             {
-                shoot();
+                if (Input.GetButton("Fire1"))
+                {
+                    this.shoot(true);
+                }
+                else if (Input.GetButton("Fire2"))
+                {
+                    this.shoot(false);
+                }
             }
 
             if (timer >= timeBetweenBullets * effectsDisplayTime)
@@ -67,7 +74,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     }
 
     [RPC]
-    void shoot()
+    void shoot(bool allyShoot)
     {
         timer = 0f;
 
@@ -87,22 +94,21 @@ public class PlayerShooting : Photon.MonoBehaviour
         Debug.DrawRay(transform.position, transform.position + transform.forward * 10, Color.red, 0.5f);
         if (Physics.Raycast(shootRay, out shootHit, range))
         {
-            User user = shootHit.collider.GetComponent<User>();
-            if (user)
+            if (allyShoot)
             {
-                if (this.playerScript.currentCombinaison == null)
+                User user = shootHit.collider.GetComponent<User>();
+                if (user)
                 {
-                    this.playerScript.currentCombinaison = new Combinaison();
+                    this.shootAlly(user);
                 }
-
-                this.playerScript.currentCombinaison.levelUp(this.playerScript.element);
-                this.playerScript.currentCombinaison.transfertTo(user);
-                this.playerScript.currentCombinaison = null;
             }
             else
             {
-                if (this.playerScript.currentCombinaison.pattern != null)
-                    StartCoroutine(this.playerScript.currentCombinaison.pattern.shoot(this.transform));
+                Enemy enemy = shootHit.collider.GetComponent<Enemy>();
+                if (enemy)
+                {
+                    this.shootEnemy(enemy);
+                }
             }
 
             //to remove
@@ -124,5 +130,33 @@ public class PlayerShooting : Photon.MonoBehaviour
 
         if (this.photonView.isMine)
             this.photonView.RPC("shoot", PhotonTargets.Others);
+    }
+
+    [RPC]
+    private void shootEnemy(Enemy enemy)
+    {
+
+        /*if (this.playerScript.currentCombinaison.pattern != null)
+            StartCoroutine(this.playerScript.currentCombinaison.pattern.shoot(this.transform));*/
+
+        if (this.photonView.isMine)
+            this.photonView.RPC("shootEnemy", PhotonTargets.Others, enemy);
+    }
+
+    [RPC]
+    private void shootAlly(User user)
+    {
+
+        /* if (this.playerScript.currentCombinaison == null)
+         {
+             this.playerScript.currentCombinaison = new Combinaison();
+         }
+
+         this.playerScript.currentCombinaison.levelUp(this.playerScript.element);
+         this.playerScript.currentCombinaison.transfertTo(user);
+         this.playerScript.currentCombinaison = null;*/
+
+        if (this.photonView.isMine)
+            this.photonView.RPC("shootAlly", PhotonTargets.Others, user);
     }
 }
