@@ -5,6 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(crouchController))]
 public class weaponController : MonoBehaviour
 {
+
     public float aimSpeed = 5.0f;
     public float accuracyLossMultiplier = 0.5f;
 
@@ -58,7 +59,7 @@ public class weaponController : MonoBehaviour
         float forwardSpeed = soldierMovementScript.forwardSpeed;
         float strafeSpeed = soldierMovementScript.strafeSpeed;
         accuracyLossTarget = 1.0f;
-        if (forwardSpeed > soldierMovementScript.forwardSpeedMultiplier * 1.2f)
+        if (forwardSpeed > soldierMovementScript.forwardSpeedMultiplier * 1.2)
         {
             isSprinting = true;
             accuracyLossTarget += 1.0f;
@@ -82,7 +83,7 @@ public class weaponController : MonoBehaviour
         accuracyLossTarget += vibratingAimLoss;
         accuracyLossTarget += Mathf.Pow(Mathf.Abs(forwardSpeed * 2.0f + strafeSpeed * 2.0f), 0.1f);
         accuracyLossTarget += Mathf.Pow(Mathf.Pow(Mathf.Abs(turnSpeed), 2.3f) / Mathf.Pow(10, 4), 0.35f);
-        accuracyLossTarget += (1 - crouchControllerScript.globalCrouchBlend) * 0.5f;
+        accuracyLossTarget += (1.0f - crouchControllerScript.globalCrouchBlend) * 0.5f;
         accuracyLossTarget *= accuracyLossMultiplier;
         if (accuracyLoss > accuracyLossTarget)
         {
