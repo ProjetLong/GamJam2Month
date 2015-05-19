@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController))]
 public class crouchController : MonoBehaviour
 {
-    public float crouchSpeedMultiplier = 0.5f;
+    public float crouchSpeedMultiplier = 0.75f;
     public float crouchTogglingTime = 0.1f;
     public float globalCrouchBlend; //0 is standing up, 1 is crouching.
 

@@ -6,11 +6,11 @@ using System.Collections;
 public class weaponController : MonoBehaviour
 {
 
-    public float aimSpeed = 5.0f;
+    public float aimSpeed = 50f;
     public float accuracyLossMultiplier = 0.5f;
+    public gunSelector gunSelectorScript;
 
     private bool firing = false;
-    private gunSelector gunSelectorScript;
     private Transform crosshairTransform;
     private float accuracyLoss;
     private float accuracyLossTarget;
