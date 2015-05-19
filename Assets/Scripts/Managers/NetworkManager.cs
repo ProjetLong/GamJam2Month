@@ -81,7 +81,7 @@ public class NetworkManager : Photon.MonoBehaviour
                 // Spawn player
                 GameObject player = PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.up * 1, Quaternion.identity, 0);
                 GameObject entities = GameObject.Find("Players");
-                player.transform.parent = entities.transform;
+                //player.transform.parent = entities.transform;
 
                 //init miniMap
                 GameObject miniMapCamera = GameObject.Find("MiniMapCamera");
