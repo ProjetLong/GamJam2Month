@@ -48,11 +48,11 @@ public class PlayerShooting : Photon.MonoBehaviour
             {
                 if (Input.GetButton("Fire1"))
                 {
-                    this.shoot(true);
+                    this.shoot(false);
                 }
                 else if (Input.GetButton("Fire2"))
                 {
-                    this.shoot(false);
+                    this.shoot(true);
                 }
             }
 
@@ -104,11 +104,7 @@ public class PlayerShooting : Photon.MonoBehaviour
             }
             else
             {
-                Enemy enemy = shootHit.collider.GetComponent<Enemy>();
-                if (enemy)
-                {
-                    this.shootEnemy(enemy);
-                }
+                this.shootEnemy();
             }
 
             //to remove
@@ -133,7 +129,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     }
 
     [RPC]
-    private void shootEnemy(Enemy enemy)
+    private void shootEnemy()
     {
         if (this.playerScript.currentCombinaison == null)
         {
@@ -158,7 +154,7 @@ public class PlayerShooting : Photon.MonoBehaviour
         }
 
         if (this.photonView.isMine)
-            this.photonView.RPC("shootEnemy", PhotonTargets.Others, enemy);
+            this.photonView.RPC("shootEnemy", PhotonTargets.Others);
     }
 
     [RPC]
