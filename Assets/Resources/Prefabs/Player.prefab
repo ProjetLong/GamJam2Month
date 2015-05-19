@@ -764,7 +764,6 @@ GameObject:
   - 114: {fileID: 11446282}
   - 114: {fileID: 11446288}
   - 114: {fileID: 11446292}
-  - 114: {fileID: 11446280}
   - 114: {fileID: 11446304}
   - 114: {fileID: 11446306}
   - 114: {fileID: 11446314}
@@ -4059,29 +4058,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTiltMultiplier: 1
---- !u!114 &11446280
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146182}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd5f09b1bf8701f4b8cabe4a6cedb78f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soldierCamera: {fileID: 446184}
-  lodPrefabs:
-  - {fileID: 100096, guid: 4721e207f34a5eb4ea742e2e513db4f9, type: 2}
-  - {fileID: 100090, guid: 357ded958f7efb64298c4a9f3d4d93df, type: 2}
-  - {fileID: 100092, guid: 81a0e4d45cfc39341a41c0858d1641fd, type: 2}
-  - {fileID: 100092, guid: a5c44052a0d560f4a9a51900e4ca53c5, type: 2}
-  lodDistances:
-  - 5
-  - 10
-  - 20
-  - 40
-  soldierCharacter: {fileID: 146286}
 --- !u!114 &11446282
 MonoBehaviour:
   m_ObjectHideFlags: 1
