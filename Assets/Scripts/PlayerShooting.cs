@@ -125,7 +125,7 @@ public class PlayerShooting : Photon.MonoBehaviour
         }
 
         if (this.photonView.isMine)
-            this.photonView.RPC("shoot", PhotonTargets.Others);
+            this.photonView.RPC("shoot", PhotonTargets.Others, allyShoot);
     }
 
     [RPC]
