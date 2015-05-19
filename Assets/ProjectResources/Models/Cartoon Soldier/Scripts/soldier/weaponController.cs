@@ -6,7 +6,7 @@ using System.Collections;
 public class weaponController : MonoBehaviour
 {
 
-    public float aimSpeed = 5.0f;
+    public float aimSpeed = 50f;
     public float accuracyLossMultiplier = 0.5f;
 
     private bool firing = false;
