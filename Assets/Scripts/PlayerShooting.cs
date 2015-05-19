@@ -91,9 +91,9 @@ public class PlayerShooting : Photon.MonoBehaviour
 
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
-        Debug.DrawRay(transform.position, transform.position + transform.forward * 10, Color.red, 0.5f);
         if (Physics.Raycast(shootRay, out shootHit, range))
         {
+            Debug.Log(shootHit.ToString());
             if (allyShoot)
             {
                 User user = shootHit.collider.GetComponent<User>();
