@@ -18,7 +18,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     public GameObject explosion;
 
     User playerScript;
-    Animator anim;
+    //Animator anim;
 
     void Awake()
     {
@@ -32,7 +32,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     void Start()
     {
         playerScript = transform.parent.GetComponent<User>();
-        this.anim = this.playerScript.transform.FindChild("Mesh").GetComponent<Animator>();
+        //this.anim = this.playerScript.transform.FindChild("Mesh").GetComponent<Animator>();
     }
 
     void Update()
@@ -75,7 +75,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     {
         timer = 0f;
 
-        this.anim.SetTrigger("Shoot");
+        //this.anim.SetTrigger("Shoot");
         gunAudio.Play();
 
         gunLight.enabled = true;

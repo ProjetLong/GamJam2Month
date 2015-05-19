@@ -3,7 +3,7 @@ using System.Collections;
 
 public class health : MonoBehaviour {
 
-	float _health = 300;
+	public float _health = 300;
 
     private float lastHitTime;
     private Vector3 hitDirection;
