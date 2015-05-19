@@ -18,7 +18,7 @@ public class weaponController : MonoBehaviour
     private float vibratingAimLoss; //shootingAimLoss with firing vibration.
     private bool isSprinting;
     //External scripts.
-    private crossHair crosshairScript;
+    private crosshair crosshairScript;
     private soldierMovement soldierMovementScript;
     private crouchController crouchControllerScript;
     private health healthScript;
