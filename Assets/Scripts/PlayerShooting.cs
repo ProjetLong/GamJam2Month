@@ -49,7 +49,10 @@ public class PlayerShooting : Photon.MonoBehaviour
                 }
                 else if (Input.GetButton("Fire2"))
                 {
-                    this.shoot(true);
+                    if (this.playerScript.currentCombinaison.getLevel() < 3)
+                    {
+                        this.shoot(true);
+                    }
                 }
             }
 
