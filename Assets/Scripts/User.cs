@@ -83,5 +83,23 @@ public class User : Character
             this.resources = 0;
     }
 
+    public void updateCombinaison(Combinaison oldCombinaison)
+    {
+        currentCombinaison = oldCombinaison;
+        currentCombinaison.levelUp(this.element);
+        StartCoroutine("combinaisonLifeCoroutine");
+    }
 
+    public void combinaisonTransfered()
+    {
+        this.currentCombinaison = null;
+        StopCoroutine("combinaisonLifeCoroutine");
+    }
+
+    private IEnumerator combinaisonLifeCoroutine()
+    {
+        yield return new WaitForSeconds(TweakManager.Instance.combinaisonTimeToLive);
+
+        this.currentCombinaison = null;
+    }
 }
