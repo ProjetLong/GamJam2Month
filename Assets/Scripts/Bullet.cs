@@ -4,8 +4,9 @@ using System.Collections;
 public class Bullet : MonoBehaviour
 {
     public Combinaison combinaison;
-    public float speed;
+    public float speed = 10;
     public int damagePerShot = 20;
+
 
     void Update()
     {
