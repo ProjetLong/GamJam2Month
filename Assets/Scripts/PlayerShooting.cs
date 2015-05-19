@@ -135,9 +135,27 @@ public class PlayerShooting : Photon.MonoBehaviour
     [RPC]
     private void shootEnemy(Enemy enemy)
     {
-
-        /*if (this.playerScript.currentCombinaison.pattern != null)
-            StartCoroutine(this.playerScript.currentCombinaison.pattern.shoot(this.transform));*/
+        if (this.playerScript.currentCombinaison == null)
+        {
+            GameObject bullet = Instantiate(TweakManager.Instance.bullet, this.transform.position, Quaternion.LookRotation(this.transform.forward)) as GameObject;
+            Bullet bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.combinaison = new Combinaison();
+            bulletScript.combinaison.levelUp(this.playerScript.element);
+        }
+        else
+        {
+            int lvl = this.playerScript.currentCombinaison.getLevel();
+            if (lvl >= 3)
+            {
+                StartCoroutine(this.playerScript.currentCombinaison.pattern.shoot(this.transform));
+            }
+            else
+            {
+                GameObject bullet = Instantiate(TweakManager.Instance.bullet, this.transform.position, Quaternion.LookRotation(this.transform.forward)) as GameObject;
+                Bullet bulletScript = bullet.GetComponent<Bullet>();
+                bulletScript.combinaison = this.playerScript.currentCombinaison;
+            }
+        }
 
         if (this.photonView.isMine)
             this.photonView.RPC("shootEnemy", PhotonTargets.Others, enemy);

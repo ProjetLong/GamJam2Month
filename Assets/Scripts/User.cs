@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class User : Character
 {
     #region Public properties
-    
+
     #endregion
 
     public int resources = 50;
@@ -62,7 +62,7 @@ public class User : Character
     protected override void modifyHealth(int amount)
     {
         base.modifyHealth(amount);
-        if (amount < health) GetComponentInChildren<Animator> ().SetTrigger ("Hurted");
+        if (amount < health) GetComponentInChildren<Animator>().SetTrigger("Hurted");
         this.updateHealth();
     }
 
