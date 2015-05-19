@@ -4,9 +4,9 @@
 
 public class soldierMovement : Photon.MonoBehaviour {
     //This script controls how the soldier will move.
-    public float forwardSpeedMultiplier = 3.0f;
+    public float forwardSpeedMultiplier = 3.5f;
     public float strafeSpeedMultiplier = 2.0f;
-    public float turnSpeedMultiplier = 6.0f;
+    public float turnSpeedMultiplier = 5.0f;
     public float gravity = 9.8f;
     //public String soldierLocation = "smoothWorldPosition/soldierSkeleton";
     public Transform soldier;
