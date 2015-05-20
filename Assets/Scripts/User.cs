@@ -34,7 +34,6 @@ public class User : Character
                 alreadyAssignedElements[i] = (int)players[i].GetComponent<User>().element;
             }
 
-
             while (alreadyAssignedElements.Contains(rng))
             {
                 rng = Random.Range(0, (int)Combinaison.ELEMENTS.COUNT - 1);
