@@ -58,8 +58,8 @@ public abstract class Character : Photon.MonoBehaviour
     }
 
     [RPC]
-    protected virtual void modifyHealth(int amount)
-    {
+    protected virtual void modifyHealth(int amount) {
+        Debug.Log (health + " " + amount);
         this.health = Mathf.Clamp(this.health - amount, 0, this.maxHealth);
 
         if (this.photonView.isMine)
