@@ -622,11 +622,11 @@ Material:
         second: {r: 1, g: 0, b: 0, a: .600000024}
       data:
         first:
-          name: _Ambient
+          name: _Emission
         second: {r: 1, g: 0, b: 0, a: .600000024}
       data:
         first:
-          name: _Emission
+          name: _Ambient
         second: {r: 1, g: 0, b: 0, a: .600000024}
 --- !u!1 &324095403
 GameObject:
