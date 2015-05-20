@@ -82,6 +82,7 @@ public class NetworkManager : Photon.MonoBehaviour
                 player.GetComponent<crouchController>().enabled = pv.isMine;
                 player.GetComponent<weaponController>().enabled = pv.isMine;
                 player.transform.FindChild("smoothWorldPosition/soldierCamera").gameObject.SetActive(pv.isMine);
+                player.transform.FindChild("crosshair").gameObject.SetActive(pv.isMine);
                 //GameObject entities = GameObject.Find("Players");
                 //player.transform.parent = entities.transform;
 

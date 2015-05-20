@@ -1543,7 +1543,6 @@ MonoBehaviour:
   rotationSpeed: 360
   damageTextPrefab: {fileID: 100000, guid: 0cdb3fec2a49c5349ab41488e5e62a18, type: 2}
   element: 0
-  _deathFXPrefab: {fileID: 192118, guid: 6452c9f897d32cd46a57bdcae589d527, type: 2}
   enemyType: 1
   target: {fileID: 0}
   playerTarget: {fileID: 0}

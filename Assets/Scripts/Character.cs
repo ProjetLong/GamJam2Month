@@ -3,7 +3,7 @@ using System.Collections;
 
 public abstract class Character : Photon.MonoBehaviour
 {
-    
+
 
     #region Members
     public int health;
@@ -42,21 +42,18 @@ public abstract class Character : Photon.MonoBehaviour
     public void takeDamage(Combinaison.ELEMENTS type, int amount)
     {
         this.modifyHealth(amount);
+        if (this.damageTextPrefab != null)
+        {
+            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+            pos.x = Mathf.Clamp(pos.x, 0.05f, 0.95f); // clamp position to screen to ensure
+            pos.y = Mathf.Clamp(pos.y, 0.05f, 0.9f); // the string will be visible
+            pos.z = 0.0f;
+            GameObject damageText = Instantiate(this.damageTextPrefab, pos, Quaternion.identity) as GameObject;
+            damageText.GetComponent<DamageText>().setValue(amount);
+        }
         if (!isAlive())
         {
             this.death();
-        }
-        else
-        {
-            if (this.damageTextPrefab != null)
-            {
-                Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-                pos.x = Mathf.Clamp(pos.x, 0.05f, 0.95f); // clamp position to screen to ensure
-                pos.y = Mathf.Clamp(pos.y, 0.05f, 0.9f); // the string will be visible
-                pos.z = 0.0f;
-                GameObject damageText = Instantiate(this.damageTextPrefab, pos, Quaternion.identity) as GameObject;
-                damageText.GetComponent<DamageText>().setValue(amount);
-            }
         }
     }
 
@@ -81,7 +78,6 @@ public abstract class Character : Photon.MonoBehaviour
 
     protected virtual void death()
     {
-        GetComponentInChildren<Animator> ().SetTrigger ("Death");
         Debug.Log("Death of " + this.tag);
     }
 

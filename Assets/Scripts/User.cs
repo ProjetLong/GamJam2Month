@@ -62,7 +62,6 @@ public class User : Character
     protected override void modifyHealth(int amount)
     {
         base.modifyHealth(amount);
-        if (amount < health) GetComponentInChildren<Animator>().SetTrigger("Hurted");
         this.updateHealth();
     }
 

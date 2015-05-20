@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
+[Serializable]
 public class Combinaison
 {
     public enum ELEMENTS { FIRE = 0, AIR, POISON, ICE, COUNT };
