@@ -1036,6 +1036,7 @@ GameObject:
   - 124: {fileID: 12489416}
   - 92: {fileID: 9289416}
   - 81: {fileID: 8189416}
+  - 114: {fileID: 11430776}
   - 114: {fileID: 11489454}
   m_Layer: 0
   m_Name: soldierCamera
@@ -3828,7 +3829,7 @@ MonoBehaviour:
   forwardSpeedMultiplier: 3.5
   strafeSpeedMultiplier: 2
   turnSpeedMultiplier: 5
-  gravity: 9.80000019
+  gravity: 9.81000042
   soldier: {fileID: 489564}
   turnSpeed: 0
   forwardSpeed: 0
@@ -4126,6 +4127,18 @@ MonoBehaviour:
     Spine2/Bip01 Neck/Bip01 L Clavicle/Bip01 L UpperArm/Bip01 L Forearm
   leftHandLocation: soldierCharacter/Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01
     Spine2/Bip01 Neck/Bip01 L Clavicle/Bip01 L UpperArm/Bip01 L Forearm/Bip01 L Hand
+--- !u!114 &11430776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe9226ba0d084c4f9ef452eea1e8ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTiltMultiplier: 1
 --- !u!114 &11450154
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class soldierAnimation : MonoBehaviour {
     //Curves.
@@ -48,7 +47,7 @@ public class soldierAnimation : MonoBehaviour {
     private bool isFalling;
     private float startedFallingTime;
     private bool isGrounded;
-    private float hitStartTime; //Time in which hit animation should start playing.
+    private float hitStartTime ; //Tme in which hit animation should start playing.
     private Vector3 getHitDirection;
     //External scripts.
     private crouchController crouchControllerScript;
@@ -57,12 +56,12 @@ public class soldierAnimation : MonoBehaviour {
     //
     void Start(){
 	    soldierRotation = Quaternion.identity;
-	    crouchControllerScript = transform.root.GetComponent<crouchController> ();
-	    weaponControllerScript = transform.root.GetComponent<weaponController> ();
-        crouchControllerScript.globalCrouchBlend = 0.0f;
-        crouchControllerScript.globalCrouchBlendTarget = 0.0f;
-        crouchControllerScript.globalCrouchBlendVelocity = 0.0f;
-	    healthScript = transform.root.GetComponent<health> ();
+	    crouchControllerScript.globalCrouchBlend = 0.0f;
+	    crouchControllerScript.globalCrouchBlendTarget = 0.0f;
+	    crouchControllerScript.globalCrouchBlendVelocity = 0.0f;
+	    crouchControllerScript = transform.root.GetComponent<crouchController>();
+	    weaponControllerScript = transform.root.GetComponent<weaponController>();
+	    healthScript = transform.root.GetComponent<health>();
     }
 
     void LateUpdate(){
@@ -112,7 +111,7 @@ public class soldierAnimation : MonoBehaviour {
 		    isGrounded = false;
 	    }
 	    //Animation blending.
-	    float minimumFallSpeed = -0.5f; //Should be called maximum.
+	    float minimumFallSpeed  = -0.5f; //Should be called maximum.
 	    if (!isFalling && verticalSpeed < minimumFallSpeed && !isGrounded){ //Start falling time.
 		    isFalling = true;
 		    startedFallingTime = Time.time;
@@ -140,8 +139,8 @@ public class soldierAnimation : MonoBehaviour {
 	    animation.Blend("soldierFalling",fallingBlend,blendSpeed);
 	    float fallingInhibit = Mathf.Pow(Mathf.Abs(1 - fallingBlend),2.0f);//Make other animations inhibit when falling.
 	    if(Time.time < lastLandingTime + landingDuration){ //Landing blend.
-		    float timeSinceLanding =  Time.time - lastLandingTime;
-		    float landingProgress = timeSinceLanding / landingDuration; //From 0 to 1.
+		    float timeSinceLanding  =  Time.time - lastLandingTime;
+		    float landingProgress  = timeSinceLanding / landingDuration; //From 0 to 1.
 		    landingProgress = Mathf.Pow(landingProgress, 0.6f);
 		    landingBlend = 1 - landingProgress;
 		    float landingAnimationStartTime = Mathf.Clamp01(1 - landingDuration);
@@ -311,7 +310,7 @@ public class soldierAnimation : MonoBehaviour {
 	    if(!dying){
 		    getHitDirection = hitDirection;
 	    }
-	    if (healthScript.GetHealth () <= 0){  //Die blend.
+	    if (healthScript.GetHealth() <= 0){  //Die blend.
 		    dieBlend = 1.0f;
 		    if (getHitDirection.z > 0){
 			    animation["soldierDieFront"].time = timeSinceDeath;
@@ -357,20 +356,19 @@ public class soldierAnimation : MonoBehaviour {
 	    animation["soldierCrouchSpinLeft"].speed = turnAnimationSpeed;
 	    //Torso recoil when firing.
 	    if (firing){
-		    Transform spine1 = transform.Find("Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1");
-		    Transform spine2 = spine1.Find("Bip01 Spine2");
-            spine1.localRotation = Quaternion.EulerAngles (spine1.localRotation.x, spine1.localRotation.y, spine1.localRotation.z + Mathf.Sin(Time.time * 50) * 0.5f);
+		    var spine1 = transform.Find("Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1");
+		    var spine2 = spine1.Find("Bip01 Spine2");
+            
 		    //spine1.localRotation.eulerAngles.z += Mathf.Sin(Time.time * 50) * 0.5f;
-            spine2.localRotation = Quaternion.EulerAngles (spine1.localRotation.x, spine1.localRotation.y, spine1.localRotation.z + Mathf.Sin(Time.time * 50 - 1.0f) * 0.5f);
-		    //spine2.localRotation.eulerAngles.z += Mathf.Sin(Time.time * 50 - 1.0) * 0.5f;
+		    //spine2.localRotation.eulerAngles.z += Mathf.Sin(Time.time * 50 - 1.0f) * 0.5f;
 	    }
 	    //Rotation.
 	    float deltaAngle = Mathf.DeltaAngle(transform.rotation.eulerAngles.y, transform.root.rotation.eulerAngles.y);
 	    float turnAngle = Mathf.Pow(Mathf.Abs(deltaAngle), 2.5f) * Mathf.Sign(deltaAngle) / 80;
 	    turnAngle *= dieInhibit;
-        soldierRotation = Quaternion.EulerAngles (soldierRotation.x, soldierRotation.y + turnAngle * Time.deltaTime, soldierRotation.z);
 	    //soldierRotation.eulerAngles.y += turnAngle * Time.deltaTime;
-	    transform.rotation = soldierRotation;
+	    //transform.rotation = soldierRotation;
+        transform.Rotate (new Vector3 (0, soldierRotation.eulerAngles.y + turnAngle * Time.deltaTime, 0));
 	    //Tilt
 	    float tiltTarget = -turnAngle * 0.01f * forwardSpeed * tiltMultiplier;
 	    tiltTarget = Mathf.Clamp(tiltTarget,-30f,30f);
@@ -378,7 +376,6 @@ public class soldierAnimation : MonoBehaviour {
 	    if (Mathf.Abs(verticalSpeed) > 1){
 		    tilt /= Mathf.Abs(verticalSpeed);
 	    }
-        transform.localRotation = Quaternion.EulerAngles (transform.localRotation.x, transform.localRotation.y, tilt);
 	    //transform.localRotation.eulerAngles.z = tilt;
     }
 }
