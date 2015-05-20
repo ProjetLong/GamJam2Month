@@ -1037,14 +1037,13 @@ GameObject:
   - 92: {fileID: 9289416}
   - 81: {fileID: 8189416}
   - 114: {fileID: 11430776}
-  - 114: {fileID: 11489454}
   m_Layer: 0
   m_Name: soldierCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &189552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3396,7 +3395,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189550}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: .509803951, g: .592156887, b: .588235319, a: .0196078438}
@@ -4379,18 +4378,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 33edda90fefdb5443b3a5933ab04989e, type: 2}
   rate: 8
   on: 0
---- !u!114 &11489454
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 189550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169a10a209d51f743af2e5572703a6b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraTiltMultiplier: 1
 --- !u!114 &11489460
 MonoBehaviour:
   m_ObjectHideFlags: 1
