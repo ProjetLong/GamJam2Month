@@ -161,7 +161,9 @@ public class soldierMovement : Photon.MonoBehaviour
         targetTurnSpeed *= Mathf.Pow(turnSpeedMultiplier, 3);
         targetTurnSpeed *= deathInhibit;
         turnSpeed = Mathf.Lerp(turnSpeed, targetTurnSpeed, Time.deltaTime * 25.0f);
-        transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + turnSpeed * Time.deltaTime, transform.rotation.eulerAngles.z));
+        Vector3 temp = transform.rotation.eulerAngles;
+        temp.y += turnSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Euler(temp);
         //transform.rotation.eulerAngles.y += turnSpeed * Time.deltaTime;
     }
 }
