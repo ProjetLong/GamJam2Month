@@ -91,7 +91,8 @@ public class soldierMovement : Photon.MonoBehaviour
             biasRecoilAmount *= maxRecoil;
             recoilVector = recoilDirecion * biasRecoilAmount;
             recoilInhibit = 1 - (recoilAmount * 0.65f / maxRecoil);
-            float health = healthScript.GetHealth();
+            //float health = healthScript.GetHealth ();
+            float health = GetComponent<User> ().health;
             if (health <= 0)
             {
                 deathInhibit = 0;
