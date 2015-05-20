@@ -2,13 +2,13 @@
 using System.Collections;
 
 public class bulletTrace : MonoBehaviour {
-    float life = 0.5f;
-    float bulletSpeed = 1.0f;
-    GameObject dustPrefab;
-    GameObject bulletHolePrefab;
+    public float life = 0.5f;
+    public float bulletSpeed = 1.0f;
+    public GameObject dustPrefab;
+    public GameObject bulletHolePrefab;
 
     private float destroyTime;
-    private Vector3 velocity;
+    public Vector3 velocity;
     private float gravity = 9.8f;
 
     void Start(){

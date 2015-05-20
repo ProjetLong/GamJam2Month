@@ -11,7 +11,7 @@ public class sentryGun : MonoBehaviour {
     private bool firing = false;
     private bulletTraceGenerator bulletTraceGeneratorScript;
     private muzzleFlashGenerator muzzleFlashGeneratorScript;
-    private spinningTurret spinningTurretScript;
+    //private spinningTurret spinningTurretScript;
     private Transform _base;
     private Transform rotator;
     private Transform pitch;
@@ -19,7 +19,7 @@ public class sentryGun : MonoBehaviour {
     private Transform bulletTraceGenerator;
     private Transform muzzleFlashGenerator;
     private Transform laserSight;
-    private laserSight laserSightScript;
+    //private laserSight laserSightScript;
     private bool exploded = false;
     //Ai
     private bool foundTarget;
