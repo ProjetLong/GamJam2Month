@@ -20,13 +20,13 @@ public class bulletTrace : MonoBehaviour {
 	    if(Time.time > destroyTime){
 		    Destroy(gameObject);
 	    }
-	    Ray ray;
+	    Ray ray = new Ray ();
 	    ray.origin = transform.position;
 	    ray.direction = transform.forward;
 	    RaycastHit hit;
 	    if (Physics.Raycast(ray, out hit,bulletSpeed*Time.deltaTime)){
 		    triggerChildrenCollider triggerChildrenColliderScript = hit.transform.root.GetComponent<triggerChildrenCollider>();
-		    bool reCheck; //Re-check if there's a hit for children collider.
+		    bool reCheck = false; //Re-check if there's a hit for children collider.
 		    Collider mainColliderHit = hit.collider; //Parent collider. (must be re enabled)
             Collider[] childrenColliderList;
 		    if(triggerChildrenColliderScript != null){ //Trigger children property. Enable children collider and disable root collider.
@@ -42,7 +42,7 @@ public class bulletTrace : MonoBehaviour {
 			    bool makeDust = true;
 			    bool makeHole = true;
 			    bulletHoleProperty bulletHolePropertyScript =  hit.transform.root.GetComponent<bulletHoleProperty>();
-			    GameObject extraPrefab;
+			    GameObject extraPrefab = null;
 			    float holeSize = 1.0f;
 			    Material[] differentBulletMaterialArray;
                 Material[] bulletMaterials;
