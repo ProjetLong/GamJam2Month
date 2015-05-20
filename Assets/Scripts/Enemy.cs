@@ -31,7 +31,6 @@ public class Enemy : Character
 
     // Update is called once per frame
     void Update() {
-        Debug.Log (canAttack);
         if (hasTarget())
         {
             //facing target
