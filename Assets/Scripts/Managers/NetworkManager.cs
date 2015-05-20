@@ -83,17 +83,20 @@ public class NetworkManager : Photon.MonoBehaviour
                 player.GetComponent<soldierMovement> ().enabled = pv.isMine;
                 player.GetComponent<crouchController> ().enabled = pv.isMine;
                 player.GetComponent<weaponController> ().enabled = pv.isMine;
-                GameObject entities = GameObject.Find("Players");
+                player.GetComponentInChildren<Camera> ().enabled = pv.isMine;
+                //GameObject entities = GameObject.Find("Players");
                 //player.transform.parent = entities.transform;
 
                 //init miniMap
-                GameObject miniMapCamera = GameObject.Find("MiniMapCamera");
-                MiniMapFollow follow = miniMapCamera.GetComponent<MiniMapFollow>();
-                follow.target = player;
+                if (pv.isMine) {
+                    GameObject miniMapCamera = GameObject.Find ("MiniMapCamera");
+                    MiniMapFollow follow = miniMapCamera.GetComponent<MiniMapFollow> ();
+                    follow.target = player;
+                }
 
                 //attach main camera
-                CameraFollow camFollow = Camera.main.GetComponent<CameraFollow>();
-                camFollow.setTarget(player.transform);
+                //CameraFollow camFollow = Camera.main.GetComponent<CameraFollow>();
+                //camFollow.setTarget(player.transform);
                 break;
         }
     }
