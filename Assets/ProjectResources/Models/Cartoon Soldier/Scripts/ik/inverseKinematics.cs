@@ -22,7 +22,8 @@ public class inverseKinematics : MonoBehaviour
         float ikAngle = Mathf.Acos(adjacent / hypotenuse) * Mathf.Rad2Deg;
         upperArm.LookAt(target, transform.root.up);
         Vector3 temp = upperArm.localRotation.eulerAngles;
-        upperArm.localRotation = Quaternion.Euler(temp.x + ikAngle, temp.y, temp.z);
+        temp.x += ikAngle;
+        upperArm.localRotation = Quaternion.Euler(temp);
         elbow.LookAt(target, transform.root.up);
     }
 }

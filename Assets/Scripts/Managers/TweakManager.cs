@@ -3,6 +3,14 @@ using System.Collections;
 
 public class TweakManager : MonoBehaviour
 {
+    [System.Serializable]
+    public struct GUICombinaisonState
+    {
+        public GameObject element;
+        public Sprite pattern;
+        public GameObject effect;
+    }
+
     private static TweakManager instance;
     public static TweakManager Instance
     {
@@ -37,4 +45,7 @@ public class TweakManager : MonoBehaviour
 
     //combinaison
     public float combinaisonTimeToLive = 15.0f;
+
+    //gui state
+    public GUICombinaisonState[] combinaisonStates;
 }

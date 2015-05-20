@@ -1036,7 +1036,7 @@ GameObject:
   - 124: {fileID: 12489416}
   - 92: {fileID: 9289416}
   - 81: {fileID: 8189416}
-  - 114: {fileID: 11489454}
+  - 114: {fileID: 11461900}
   m_Layer: 0
   m_Name: soldierCamera
   m_TagString: MainCamera
@@ -2725,7 +2725,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.690169096, y: 9.77930838e-17, z: -4.40420914}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 489540}
@@ -4158,6 +4158,18 @@ MonoBehaviour:
   - {fileID: 6589422}
   - {fileID: 6589428}
   - {fileID: 6589426}
+--- !u!114 &11461900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe9226ba0d084c4f9ef452eea1e8ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTiltMultiplier: 1
 --- !u!114 &11464856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4339,18 +4351,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 33edda90fefdb5443b3a5933ab04989e, type: 2}
   rate: 8
   on: 0
---- !u!114 &11489454
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 189550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169a10a209d51f743af2e5572703a6b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraTiltMultiplier: 1
 --- !u!114 &11489458
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -27,12 +27,17 @@ public class GUIManager_Game : MonoBehaviour
 
     private Slider healthBar;
     private Text healthText;
+    private GameObject combinaisonState;
+    private GameObject pattern;
+    private GameObject effect;
+    private GameObject element;
 
     void Start()
     {
         GameObject healthBar = GameObject.Find("HealthBar");
         this.healthBar = healthBar.GetComponent<Slider>();
         this.healthText = healthBar.transform.FindChild("Text").GetComponent<Text>();
+        combinaisonState = GameObject.Find("CombinaisonState");
     }
 
     public void setHealth(int currentHealth, int maxHealth)
@@ -42,9 +47,22 @@ public class GUIManager_Game : MonoBehaviour
         this.healthText.text = currentHealth + "/" + maxHealth + " " + (int)(healthProgress * 100) + "%";
     }
 
-    // Update is called once per frame
-    void Update()
+    public void updateCombinaisonState(Combinaison combinaison)
     {
-
+        int lvl = combinaison.getLevel();
+        switch (lvl)
+        {
+            case 0:
+                //not possible
+                break;
+            case 1:
+                /*Destroy(this.effect);
+                this.effect = Instantiate(TweakManager.Instance.)*/
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
     }
 }
