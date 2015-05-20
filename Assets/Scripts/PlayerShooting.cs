@@ -8,27 +8,18 @@ public class PlayerShooting : Photon.MonoBehaviour
     float timer;
     Ray shootRay;
     RaycastHit shootHit;
-    //int shootableMask;
-    ParticleSystem gunParticles;
     AudioSource gunAudio;
-    Light gunLight;
-    float effectsDisplayTime = 0.2f;
 
     public User playerScript;
     //Animator anim;
 
     void Awake()
     {
-        //shootableMask = LayerMask.GetMask("Shootable");
-        gunParticles = GetComponent<ParticleSystem>();
         gunAudio = GetComponent<AudioSource>();
-        gunLight = GetComponent<Light>();
     }
 
     void Start()
     {
-        //playerScript = transform.parent.GetComponent<User>();
-        //this.anim = this.playerScript.transform.FindChild("Mesh").GetComponent<Animator>();
     }
 
     void Update()
@@ -52,21 +43,7 @@ public class PlayerShooting : Photon.MonoBehaviour
                     }
                 }
             }
-
-            if (timer >= timeBetweenBullets * effectsDisplayTime)
-            {
-                this.disableEffects();
-            }
         }
-    }
-
-    [RPC]
-    public void disableEffects()
-    {
-        gunLight.enabled = false;
-
-        if (this.photonView.isMine)
-            this.photonView.RPC("disableEffects", PhotonTargets.Others);
     }
 
     [RPC]
@@ -74,13 +51,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     {
         timer = 0f;
 
-        //this.anim.SetTrigger("Shoot");
         gunAudio.Play();
-
-        gunLight.enabled = true;
-
-        gunParticles.Stop();
-        gunParticles.Play();
 
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;

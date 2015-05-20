@@ -18,9 +18,6 @@ public class PlayerMovement : Photon.MonoBehaviour
     private Quaternion syncEndRotation = Quaternion.identity;
 
     private Vector3 movement;
-    //private Animator anim;
-    //private int floorMask;
-    private float camRayLength = 100.0f;
     private Rigidbody playerRigidbody;
     public Vector3 offset = new Vector3(0.0f, 6.0f, -8.0f);
     public bool editorMode;
