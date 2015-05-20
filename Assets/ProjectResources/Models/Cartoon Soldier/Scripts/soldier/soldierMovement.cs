@@ -15,6 +15,7 @@ public class soldierMovement : Photon.MonoBehaviour
     public float forwardSpeed = 0.0f; //Speed the character will moved at.
     public float strafeSpeed = 0.0f;
     public bool isGrounded;
+    public bool isRunning = false;
 
     private float stopAfterLanding = 0.0f; //How much time in seconds will the character stop after landing.
     private float fallSpeed = 0.0f;
@@ -132,11 +133,12 @@ public class soldierMovement : Photon.MonoBehaviour
             {//Slow down going backwards;
                 targetForwardSpeed *= 0.5f;
             }
-            if (Input.GetKey(KeyCode.LeftShift))
-            {//Sprint with left shift;
+            if (Input.GetKey (KeyCode.LeftShift)) {//Sprint with left shift;
                 targetForwardSpeed *= 1.5f;
                 targetStrafeSpeed *= 1.5f;
+                isRunning = true;
             }
+            else isRunning = false;
         }
         if (crouchControllerScript != null)
         { //Crouch speed multiplier.

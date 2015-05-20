@@ -11,6 +11,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     AudioSource gunAudio;
 
     public User playerScript;
+    public soldierMovement movementScript;
     //Animator anim;
 
     void Awake()
@@ -30,16 +31,15 @@ public class PlayerShooting : Photon.MonoBehaviour
 
             if (timer >= timeBetweenBullets && Time.timeScale != 0)
             {
-                if (Input.GetButton("Fire1"))
-                {
-                    this.shoot(false);
-                }
-                else if (Input.GetButton("Fire2"))
-                {
-                    if (this.playerScript.currentCombinaison != null
-                        && this.playerScript.currentCombinaison.getLevel() < 3)
-                    {
-                        this.shoot(true);
+                if (!movementScript.isRunning) {
+                    if (Input.GetButton ("Fire1")) {
+                        this.shoot (false);
+                    }
+                    else if (Input.GetButton ("Fire2")) {
+                        if (this.playerScript.currentCombinaison != null
+                            && this.playerScript.currentCombinaison.getLevel () < 3) {
+                            this.shoot (true);
+                        }
                     }
                 }
             }

@@ -3835,6 +3835,7 @@ MonoBehaviour:
   forwardSpeed: 0
   strafeSpeed: 0
   isGrounded: 0
+  isRunning: 0
 --- !u!114 &11421148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4450,6 +4451,7 @@ MonoBehaviour:
   timeBetweenBullets: .150000006
   range: 100
   playerScript: {fileID: 11489460}
+  movementScript: {fileID: 11409742}
 --- !u!114 &11490752
 MonoBehaviour:
   m_ObjectHideFlags: 1
