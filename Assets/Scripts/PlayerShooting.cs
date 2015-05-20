@@ -14,7 +14,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     Light gunLight;
     float effectsDisplayTime = 0.2f;
 
-    User playerScript;
+    public User playerScript;
     //Animator anim;
 
     void Awake()
@@ -27,7 +27,7 @@ public class PlayerShooting : Photon.MonoBehaviour
 
     void Start()
     {
-        playerScript = transform.parent.GetComponent<User>();
+        //playerScript = transform.parent.GetComponent<User>();
         //this.anim = this.playerScript.transform.FindChild("Mesh").GetComponent<Animator>();
     }
 

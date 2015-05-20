@@ -50,7 +50,7 @@ public class soldierAnimation : MonoBehaviour {
     private float hitStartTime ; //Tme in which hit animation should start playing.
     private Vector3 getHitDirection;
     //External scripts.
-    private crouchController crouchControllerScript;
+    public crouchController crouchControllerScript;
     private weaponController weaponControllerScript;
     private health healthScript;
     //
