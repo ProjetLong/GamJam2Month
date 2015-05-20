@@ -951,9 +951,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05bfafc3d2f980429837e989410b7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 197018, guid: 7a13bc511f0090947b4f3d919a932a05, type: 2}
   bulletLife: 5
-  poisonEffect: {fileID: 0}
+  poisonEffect: {fileID: 120792, guid: 66b67447901f9af4cad4b01cfc1ef887, type: 2}
   poisonDuration: 3
   fireConeAngle: 0
   fireNbBullets: 5

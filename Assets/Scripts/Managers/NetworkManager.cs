@@ -79,6 +79,10 @@ public class NetworkManager : Photon.MonoBehaviour
             case "Game":
                 // Spawn player
                 GameObject player = PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.up * 1, Quaternion.identity, 0);
+                PhotonView pv = player.GetComponent<PhotonView> ();
+                player.GetComponent<soldierMovement> ().enabled = pv.isMine;
+                player.GetComponent<crouchController> ().enabled = pv.isMine;
+                player.GetComponent<weaponController> ().enabled = pv.isMine;
                 GameObject entities = GameObject.Find("Players");
                 //player.transform.parent = entities.transform;
 
