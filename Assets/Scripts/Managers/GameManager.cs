@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     public void goToMainScene()
     {
         this.goToScene("mainScene");
-        SoundManager.instance.PlayMusic();
+        //SoundManager.instance.PlayMusic();
     }
 
     public void goToLobbyScene()

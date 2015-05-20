@@ -13,11 +13,11 @@ public class Bullet : MonoBehaviour
         this.transform.Translate(this.transform.forward * this.speed * Time.deltaTime, Space.World);
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider collider)
     {
-        if (other.collider.tag == "Enemy")
+        if (collider.tag == "Enemy")
         {
-            Enemy enemyScript = other.collider.GetComponent<Enemy>();
+            Enemy enemyScript = collider.GetComponent<Enemy>();
             enemyScript.takeDamage(combinaison.element, this.damagePerShot);
             if (combinaison.effect != null)
                 StartCoroutine(combinaison.effect.applyEffect(enemyScript, this.transform));
