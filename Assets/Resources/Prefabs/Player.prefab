@@ -1056,12 +1056,12 @@ GameObject:
   - 114: {fileID: 11489458}
   - 114: {fileID: 11489460}
   - 114: {fileID: 11489422}
-  - 114: {fileID: 11489420}
   - 114: {fileID: 11489418}
   - 114: {fileID: 11489416}
   - 114: {fileID: 11421286}
   - 114: {fileID: 11421284}
   - 114: {fileID: 11455538}
+  - 114: {fileID: 11409742}
   m_Layer: 0
   m_Name: Player
   m_TagString: soldier
@@ -3814,6 +3814,26 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &11409742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9bd2c1b429482c48a896ecc4bbd9ec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardSpeedMultiplier: 3.5
+  strafeSpeedMultiplier: 2
+  turnSpeedMultiplier: 5
+  gravity: 9.80000019
+  soldier: {fileID: 489564}
+  turnSpeed: 0
+  forwardSpeed: 0
+  strafeSpeed: 0
+  isGrounded: 0
 --- !u!114 &11421284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3946,26 +3966,6 @@ MonoBehaviour:
   aimSpeed: 50
   accuracyLossMultiplier: .5
   gunSelectorScript: {fileID: 11489424}
---- !u!114 &11489420
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 189552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9bd2c1b429482c48a896ecc4bbd9ec2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forwardSpeedMultiplier: 3.5
-  strafeSpeedMultiplier: 2
-  turnSpeedMultiplier: 5
-  gravity: 9.80000019
-  soldier: {fileID: 489564}
-  turnSpeed: 0
-  forwardSpeed: 0
-  strafeSpeed: 0
-  isGrounded: 0
 --- !u!114 &11489422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3980,6 +3980,8 @@ MonoBehaviour:
   crouchSpeedMultiplier: .75
   crouchTogglingTime: .100000001
   globalCrouchBlend: 0
+  globalCrouchBlendTarget: 0
+  globalCrouchBlendVelocity: 0
 --- !u!114 &11489424
 MonoBehaviour:
   m_ObjectHideFlags: 1

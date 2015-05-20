@@ -127,8 +127,7 @@ public class skeletonToCharacter : MonoBehaviour
         leftHand = transform.Find(leftHandLocation);
     }
 
-    public void LateUpdate()
-    {
+    public void LateUpdate() {
         //Check if something was deleted. Assume if Bip01 was deleted everything is deleted. (For LOD)
         if (root == null)
         {

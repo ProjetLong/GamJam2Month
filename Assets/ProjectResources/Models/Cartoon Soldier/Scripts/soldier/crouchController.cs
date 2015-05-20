@@ -8,8 +8,8 @@ public class crouchController : MonoBehaviour
     public float crouchTogglingTime = 0.1f;
     public float globalCrouchBlend; //0 is standing up, 1 is crouching.
 
-    private float globalCrouchBlendTarget;
-    private float globalCrouchBlendVelocity;
+    public float globalCrouchBlendTarget;
+    public float globalCrouchBlendVelocity;
     private bool disable;
 
     public void Update()
