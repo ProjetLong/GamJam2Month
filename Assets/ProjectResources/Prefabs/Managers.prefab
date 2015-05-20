@@ -668,6 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432cc70607b1b984eac20c9da88b9780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soldierCamera: {fileID: 0}
   version: 0.1
   playerPrefab: {fileID: 189552, guid: 58b53c0193f37d743a7ad184d99ba724, type: 2}
   playerName: tacos
@@ -961,6 +962,7 @@ MonoBehaviour:
   airBulletInterval: .25
   iceLaserDuration: 10
   combinaisonTimeToLive: 15
+  combinaisonStates: []
 --- !u!114 &11483384
 MonoBehaviour:
   m_ObjectHideFlags: 1

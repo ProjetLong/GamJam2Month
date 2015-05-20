@@ -6,7 +6,6 @@ using Photon;
 
 public class NetworkManager : Photon.MonoBehaviour
 {
-
     //Singleton
     private static NetworkManager instance;
     public static NetworkManager Instance
@@ -82,7 +81,7 @@ public class NetworkManager : Photon.MonoBehaviour
                 player.GetComponent<soldierMovement>().enabled = pv.isMine;
                 player.GetComponent<crouchController>().enabled = pv.isMine;
                 player.GetComponent<weaponController>().enabled = pv.isMine;
-                player.transform.FindChild("soldierCamera").gameObject.SetActive(pv.isMine);
+                player.GetComponentInChildren<soldierCamera> ().gameObject.SetActive (pv.isMine);
                 //GameObject entities = GameObject.Find("Players");
                 //player.transform.parent = entities.transform;
 
