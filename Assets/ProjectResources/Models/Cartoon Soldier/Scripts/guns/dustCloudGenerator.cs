@@ -11,7 +11,7 @@ public class dustCloudGenerator : MonoBehaviour
 
     private float nextdustCloudTime;
     private float destroyTime;
-    Vector3 velocity;
+    public Vector3 velocity;
 
     void Start()
     {
