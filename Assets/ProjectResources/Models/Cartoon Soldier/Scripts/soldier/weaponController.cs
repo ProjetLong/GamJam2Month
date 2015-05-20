@@ -8,7 +8,7 @@ public class weaponController : MonoBehaviour
 
     public float aimSpeed = 50f;
     public float accuracyLossMultiplier = 0.5f;
-    public gunSelector gunSelectorScript;
+    //public gunSelector gunSelectorScript;
 
     private bool firing = false;
     private Transform crosshairTransform;
@@ -47,7 +47,7 @@ public class weaponController : MonoBehaviour
         if (Input.GetMouseButton(0) && !isSprinting && isGrounded && health > 0)
         {
             firing = true;
-            gunSelectorScript.BroadcastMessage("Fire", SendMessageOptions.DontRequireReceiver);
+            //gunSelectorScript.BroadcastMessage("Fire", SendMessageOptions.DontRequireReceiver);
         }
         else
         {
@@ -96,7 +96,7 @@ public class weaponController : MonoBehaviour
         crosshairScript.accuracyLoss = accuracyLoss;
         accuracyLoss = Mathf.Max(accuracyLoss, 1.0f);
         float accuracy = 1 / accuracyLoss;
-        gunSelectorScript.BroadcastMessage("SetAccuracy", accuracy, SendMessageOptions.DontRequireReceiver);
+        //gunSelectorScript.BroadcastMessage("SetAccuracy", accuracy, SendMessageOptions.DontRequireReceiver);
     }
 
     public bool isFiring()
