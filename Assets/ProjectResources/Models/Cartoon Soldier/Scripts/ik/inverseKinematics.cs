@@ -3,8 +3,8 @@ using System.Collections;
 
 public class inverseKinematics : MonoBehaviour
 {
-    private Vector3 target;
-    private Vector3 elbowTarget;
+    public Vector3 target;
+    public Vector3 elbowTarget;
 
     public void CalculateIK()
     {

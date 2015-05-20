@@ -24,7 +24,7 @@ public class soldierAim : MonoBehaviour {
     private float torsoOffsetPitch;
     private float leanHead = 0.0f;
     private soldierAnimation soldierAnimationScript;
-    private MonoBehaviour leftArmIkScript;
+    private inverseKinematics leftArmIkScript;
     private Transform ikArm;
     private	Transform ikUpperArm;
     private	Transform ikForearm;
@@ -71,7 +71,7 @@ public class soldierAim : MonoBehaviour {
 		    float targetHitDistance = Vector3.Distance(targetHit.point, soldierCamera.position);
 		    float soldierDistance = Vector3.Distance(transform.position, soldierCamera.position);
 		    if (targetHitDistance > soldierDistance * 1.0){
-			    Ray targetRayUpperArm;
+			    Ray targetRayUpperArm = new Ray ();
 			    targetRayUpperArm.origin = rightUpperArm.position;
 			    targetRayUpperArm.direction = targetHit.point - rightUpperArm.position; 
 			    targetTarget = rightUpperArm.position + (targetHit.point - rightUpperArm.position).normalized * targetRayDistance;
@@ -133,8 +133,8 @@ public class soldierAim : MonoBehaviour {
 	    leftArmIkScript.elbowTarget = leftElbowTarget.position;
 	    leftArmIkScript.target = gunGrab.position;
 	    leftArmIkScript.CalculateIK();
-	    var upperArmRotation : Quaternion = ikUpperArm.Find("upperArmRotation").rotation;
-	    var forearmRotation : Quaternion = ikForearm.Find("forearmRotation").rotation;
+	    Quaternion upperArmRotation = ikUpperArm.Find("upperArmRotation").rotation;
+	    Quaternion forearmRotation = ikForearm.Find("forearmRotation").rotation;
 	    leftUpperArm.rotation = upperArmRotation;
 	    leftForearm.rotation = forearmRotation;
 	    Destroy(aimAid.gameObject);
@@ -142,20 +142,20 @@ public class soldierAim : MonoBehaviour {
 		    head.LookAt(target);
 		    head.Rotate(headRotationFix);
 		    //Lean head  so it doesn't intersects with the gun.
-		    var minHeadLeanAngle : float = 0.0;
-		    var maxHeadLeanAngle : float = 120.0;
-		    var fullLeanAngle : float = 20;
-		    var leanHeadTarget : float =  0.0;
+		    float minHeadLeanAngle = 0.0f;
+		    float maxHeadLeanAngle = 120.0f;
+		    float fullLeanAngle = 20;
+		    float leanHeadTarget =  0.0f;
 		    if (head.localRotation.eulerAngles.x > minHeadLeanAngle && head.localRotation.eulerAngles.x < maxHeadLeanAngle){
 			    leanHeadTarget = head.localRotation.eulerAngles.x - minHeadLeanAngle; //Angle for leaning the head.
 			    leanHeadTarget /= maxHeadLeanAngle;
 			    leanHeadTarget *= fullLeanAngle;
 		    }
-		    leanHead = Mathf.Lerp(leanHead, leanHeadTarget, Time.deltaTime * 5.0);
+		    leanHead = Mathf.Lerp(leanHead, leanHeadTarget, Time.deltaTime * 5.0f);
 		    head.Rotate(0,leanHead,0);
 	    }
 	    //Transition 1.
-	    transition = Mathf.Lerp(transition, transitionTarget, Time.deltaTime * 5.0);
+	    transition = Mathf.Lerp(transition, transitionTarget, Time.deltaTime * 5.0f);
 	    if(transition < 1.0){ //Only Lerp if transitionTarget is between 0 and 1.
 		    rightUpperArm.localRotation = Quaternion.Lerp(rightUpperArmLocalRotation, rightUpperArm.localRotation, transition);
 		    leftUpperArm.localRotation = Quaternion.Lerp(leftUpperArmLocalRotation, leftUpperArm.localRotation, transition);
@@ -163,7 +163,7 @@ public class soldierAim : MonoBehaviour {
 		
 	    }
 	    //Transition 2.
-	    transition2 = Mathf.Lerp(transition2, transition2Target, Time.deltaTime * 5.0);
+	    transition2 = Mathf.Lerp(transition2, transition2Target, Time.deltaTime * 5.0f);
 	    if(transition2 < 1.0){ //Only Lerp if transitionTarget is between 0 and 1.
 		    head.localRotation = Quaternion.Lerp(headLocalRotation, head.localRotation, transition2);
 		    spine1.localRotation = Quaternion.Lerp(spine1LocalRotation, spine1.localRotation, transition2);
