@@ -10,12 +10,9 @@ public class PlayerShooting : Photon.MonoBehaviour
     RaycastHit shootHit;
     //int shootableMask;
     ParticleSystem gunParticles;
-    LineRenderer gunLine;
     AudioSource gunAudio;
     Light gunLight;
     float effectsDisplayTime = 0.2f;
-
-    public GameObject explosion;
 
     User playerScript;
     //Animator anim;
@@ -24,7 +21,6 @@ public class PlayerShooting : Photon.MonoBehaviour
     {
         //shootableMask = LayerMask.GetMask("Shootable");
         gunParticles = GetComponent<ParticleSystem>();
-        gunLine = GetComponent<LineRenderer>();
         gunAudio = GetComponent<AudioSource>();
         gunLight = GetComponent<Light>();
     }
@@ -49,7 +45,8 @@ public class PlayerShooting : Photon.MonoBehaviour
                 }
                 else if (Input.GetButton("Fire2"))
                 {
-                    if (this.playerScript.currentCombinaison.getLevel() < 3)
+                    if (this.playerScript.currentCombinaison != null
+                        && this.playerScript.currentCombinaison.getLevel() < 3)
                     {
                         this.shoot(true);
                     }
@@ -66,7 +63,6 @@ public class PlayerShooting : Photon.MonoBehaviour
     [RPC]
     public void disableEffects()
     {
-        gunLine.enabled = false;
         gunLight.enabled = false;
 
         if (this.photonView.isMine)
@@ -86,9 +82,6 @@ public class PlayerShooting : Photon.MonoBehaviour
         gunParticles.Stop();
         gunParticles.Play();
 
-        gunLine.enabled = true;
-        gunLine.SetPosition(0, transform.position);
-
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
         if (Physics.Raycast(shootRay, out shootHit, range))
@@ -106,22 +99,6 @@ public class PlayerShooting : Photon.MonoBehaviour
             {
                 this.shootEnemy();
             }
-
-            //to remove
-            gunLine.SetPosition(1, shootHit.point);
-            if (this.explosion)
-            {
-                GameObject explosion = Instantiate(this.explosion, shootHit.point, Quaternion.identity) as GameObject;
-                ParticleSystem emitter = explosion.GetComponent<ParticleSystem>();
-                Destroy(explosion, emitter.duration + emitter.startLifetime);
-                Light light = explosion.GetComponent<Light>();
-                Destroy(light, 0.1f);
-
-            }
-        }
-        else
-        {
-            gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
         }
 
         if (this.photonView.isMine)
