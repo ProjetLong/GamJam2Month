@@ -155,7 +155,7 @@ public class skeletonToCharacter : MonoBehaviour
             leftHand = transform.Find(leftHandLocation);
         }
 
-        //Match Rotation.
+        //Match Rotation
         if (root != null)
         {
             root.rotation = rootSource.rotation;

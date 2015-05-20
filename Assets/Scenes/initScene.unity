@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -1481,7 +1481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: .39199999}
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1535,9 +1535,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05bfafc3d2f980429837e989410b7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 197018, guid: 7a13bc511f0090947b4f3d919a932a05, type: 2}
+  bullet: {fileID: 0}
   bulletLife: 5
-  poisonEffect: {fileID: 120792, guid: 66b67447901f9af4cad4b01cfc1ef887, type: 2}
+  poisonEffect: {fileID: 0}
   poisonDuration: 3
   fireConeAngle: 0
   fireNbBullets: 5
@@ -1726,18 +1726,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11483382, guid: 14a1507ff95571a4bb72bf76d2a5c6e0, type: 2}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 197018, guid: 7a13bc511f0090947b4f3d919a932a05, type: 2}
-    - target: {fileID: 11483382, guid: 14a1507ff95571a4bb72bf76d2a5c6e0, type: 2}
-      propertyPath: poisonEffect
-      value: 
-      objectReference: {fileID: 120792, guid: 66b67447901f9af4cad4b01cfc1ef887, type: 2}
-    - target: {fileID: 11402250, guid: 14a1507ff95571a4bb72bf76d2a5c6e0, type: 2}
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 189552, guid: 58b53c0193f37d743a7ad184d99ba724, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14a1507ff95571a4bb72bf76d2a5c6e0, type: 2}
   m_RootGameObject: {fileID: 1035610810}

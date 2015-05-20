@@ -155,15 +155,16 @@ public class soldierMovement : Photon.MonoBehaviour
         moveDirection += soldier.right * strafeSpeed * recoilInhibit * deathInhibit;
         moveDirection += recoilVector;
         controller.Move(moveDirection * Time.deltaTime);//Move the controller.
+
         //Rotation.
         float targetTurnSpeed = 0.0f;
         targetTurnSpeed = Input.GetAxis("Mouse X");
         targetTurnSpeed *= Mathf.Pow(turnSpeedMultiplier, 3);
         targetTurnSpeed *= deathInhibit;
         turnSpeed = Mathf.Lerp(turnSpeed, targetTurnSpeed, Time.deltaTime * 25.0f);
-        Vector3 temp = transform.rotation.eulerAngles;
-        temp.y += turnSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.Euler(temp);
+        transform.Rotate (0, turnSpeed * Time.deltaTime, 0);
+        //transform.rotation = Quaternion.Euler (new Vector3 (0, transform.rotation.eulerAngles.y + turnSpeed * Time.deltaTime, 0));
+        //transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + turnSpeed * Time.deltaTime, transform.rotation.eulerAngles.z));
         //transform.rotation.eulerAngles.y += turnSpeed * Time.deltaTime;
     }
 }
