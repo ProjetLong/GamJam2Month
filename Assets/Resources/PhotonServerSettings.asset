@@ -41,4 +41,5 @@ MonoBehaviour:
   - showInvitationPanel
   - shootAlly
   - shootEnemy
+  - setCurrentCombinaison
   DisableAutoOpenWizard: 0
