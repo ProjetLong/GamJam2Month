@@ -13,6 +13,16 @@ public class Combinaison
     public IShootPattern pattern;
     #endregion
 
+    public Combinaison()
+    {
+        this.element = ELEMENTS.COUNT;
+    }
+
+    public Combinaison(ELEMENTS userElement)
+    {
+        this.element = userElement;
+    }
+
     public int getLevel()
     {
         if (pattern != null)
@@ -85,11 +95,6 @@ public class Combinaison
         pattern = null;
         effect = null;
         element = ELEMENTS.COUNT;
-    }
-
-    public void transfertTo(User user)
-    {
-        user.currentCombinaison = this;
     }
 
     public override string ToString()

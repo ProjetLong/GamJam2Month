@@ -81,10 +81,10 @@ public class User : Character
             this.resources = 0;
     }
 
-    public void updateCombinaison(Combinaison oldCombinaison)
+    public void updateCombinaison(Combinaison newCombinaison)
     {
-        currentCombinaison = oldCombinaison;
-        currentCombinaison.levelUp(this.element);
+        setCurrentCombinaison(newCombinaison);
+        StopCoroutine("combinaisonLifeCoroutine");
         StartCoroutine("combinaisonLifeCoroutine");
         Debug.Log(this.currentCombinaison.ToString());
         GUIManager_Game.Instance.updateCombinaisonState(currentCombinaison);
@@ -92,7 +92,8 @@ public class User : Character
 
     public void combinaisonTransfered()
     {
-        this.currentCombinaison = null;
+        setCurrentCombinaison(new Combinaison(this.element));
+
         StopCoroutine("combinaisonLifeCoroutine");
     }
 
@@ -100,6 +101,16 @@ public class User : Character
     {
         yield return new WaitForSeconds(TweakManager.Instance.combinaisonTimeToLive);
 
-        this.currentCombinaison = null;
+        this.setCurrentCombinaison(null);
+    }
+
+    [RPC]
+    public void setCurrentCombinaison(Combinaison newCombinaison)
+    {
+        this.currentCombinaison = newCombinaison;
+        if (this.photonView.isMine)
+        {
+            this.photonView.RPC("setCurrentCombinaison", PhotonTargets.Others, newCombinaison);
+        }
     }
 }

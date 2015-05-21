@@ -37,10 +37,14 @@ public class PlayerShooting : Photon.MonoBehaviour
                     {
                         this.shoot(false);
                     }
-                    else if (Input.GetButton("Fire2"))
+                    else if (Input.GetButtonDown("Fire2"))
                     {
-                        if (this.playerScript.currentCombinaison != null
-                            && this.playerScript.currentCombinaison.getLevel() < 3)
+                        if (this.playerScript.currentCombinaison == null)
+                        {
+                            this.playerScript.setCurrentCombinaison(new Combinaison(this.playerScript.element));
+                        }
+
+                        if (this.playerScript.currentCombinaison.getLevel() < 3)
                         {
                             this.shoot(true);
                         }
@@ -87,9 +91,7 @@ public class PlayerShooting : Photon.MonoBehaviour
         {
             GameObject bullet = Instantiate(TweakManager.Instance.bullet, this.transform.position, Quaternion.LookRotation(this.transform.forward)) as GameObject;
             Bullet bulletScript = bullet.GetComponent<Bullet>();
-            bulletScript.combinaison = new Combinaison();
-            bulletScript.combinaison.levelUp(this.playerScript.element);
-            this.playerScript.currentCombinaison = bulletScript.combinaison;
+            bulletScript.combinaison = new Combinaison(this.playerScript.element);
         }
         else
         {
@@ -117,7 +119,13 @@ public class PlayerShooting : Photon.MonoBehaviour
 
         if (this.playerScript.currentCombinaison == null)
         {
-            this.playerScript.currentCombinaison = new Combinaison();
+            this.playerScript.setCurrentCombinaison(new Combinaison(this.playerScript.element));
+        }
+        else
+        {
+            Combinaison lvlUpCombinaison = this.playerScript.currentCombinaison;
+            lvlUpCombinaison.levelUp(this.playerScript.element);
+            this.playerScript.setCurrentCombinaison(lvlUpCombinaison);
         }
 
         user.updateCombinaison(this.playerScript.currentCombinaison);
