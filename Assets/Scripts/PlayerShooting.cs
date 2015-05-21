@@ -63,7 +63,7 @@ public class PlayerShooting : Photon.MonoBehaviour
                 User user = shootHit.collider.GetComponent<User>();
                 if (user)
                 {
-                    this.shootAlly(user);
+                    this.shootAlly(user.name);
                 }
             }
             else
@@ -106,8 +106,9 @@ public class PlayerShooting : Photon.MonoBehaviour
     }
 
     [RPC]
-    private void shootAlly(User user)
+    private void shootAlly(string username)
     {
+        User user = GameObject.Find(username).GetComponent<User>();
 
         if (this.playerScript.currentCombinaison == null)
         {
@@ -118,6 +119,6 @@ public class PlayerShooting : Photon.MonoBehaviour
         this.playerScript.combinaisonTransfered();
 
         if (this.photonView.isMine)
-            this.photonView.RPC("shootAlly", PhotonTargets.Others, user);
+            this.photonView.RPC("shootAlly", PhotonTargets.Others, username);
     }
 }

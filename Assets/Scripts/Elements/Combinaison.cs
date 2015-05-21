@@ -92,4 +92,14 @@ public class Combinaison
         user.currentCombinaison = this;
     }
 
+    public override string ToString()
+    {
+        string resume = string.Format("Level: {0}, Element: {1}, Effect: {2}, Pattern: {3}",
+            this.getLevel().ToString(),
+            this.element != null ? this.element.ToString() : "none",
+            this.effect != null ? this.effect.ToString() : "none",
+            this.pattern != null ? this.pattern.ToString() : "none");
+
+        return resume;
+    }
 }

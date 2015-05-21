@@ -4,20 +4,16 @@ using System.Collections.Generic;
 using System;
 using Photon;
 
-public class NetworkManager : Photon.MonoBehaviour
-{
+public class NetworkManager : Photon.MonoBehaviour {
     //Singleton
     private static NetworkManager instance;
-    public static NetworkManager Instance
-    {
-        get
-        {
+    public static NetworkManager Instance {
+        get {
             return instance;
         }
     }
 
-    void Awake()
-    {
+    void Awake() {
         if (instance == null)
             instance = this;
 
@@ -30,8 +26,7 @@ public class NetworkManager : Photon.MonoBehaviour
     public string playerName;
     public string roomToJoin = "Lobby";
 
-    public void authenticate(string id)
-    {
+    public void authenticate(string id) {
         this.playerName = id;
         PhotonNetwork.ConnectUsingSettings(this.version);
         //authenticated
@@ -40,37 +35,30 @@ public class NetworkManager : Photon.MonoBehaviour
     }
 
     //temp
-    void Start()
-    {
+    void Start() {
     }
 
-    private void successfullAuthentication()
-    {
+    private void successfullAuthentication() {
         GameManager.Instance.goToLobbyScene();
     }
 
-    void Update()
-    {
+    void Update() {
     }
 
     #region "Photon"
-    void OnJoinedLobby()
-    {
+    void OnJoinedLobby() {
         Debug.Log("onJoinedLobby");
         PhotonNetwork.JoinOrCreateRoom(this.roomToJoin, new RoomOptions() { }, TypedLobby.Default);
     }
 
-    public void joinGame(string mapName)
-    {
+    public void joinGame(string mapName) {
         ConnectedPlayersManager.Instance.removePlayer(NetworkManager.Instance.playerName);
         GameManager.Instance.goToMainScene();
     }
 
-    void OnJoinedRoom()
-    {
+    void OnJoinedRoom() {
         Debug.Log("On joined Room : " + PhotonNetwork.room.name);
-        switch (PhotonNetwork.room.name)
-        {
+        switch (PhotonNetwork.room.name) {
             case "Lobby":
                 ConnectedPlayersManager.Instance.addPlayer(this.playerName);
                 break;
@@ -83,12 +71,13 @@ public class NetworkManager : Photon.MonoBehaviour
                 player.GetComponent<weaponController>().enabled = pv.isMine;
                 player.transform.FindChild("smoothWorldPosition/soldierCamera").gameObject.SetActive(pv.isMine);
                 player.transform.FindChild("crosshair").gameObject.SetActive(pv.isMine);
+
                 //GameObject entities = GameObject.Find("Players");
+                player.name = "Player" + UnityEngine.Random.Range(float.MinValue, float.MaxValue).ToString();
                 //player.transform.parent = entities.transform;
 
                 //init miniMap
-                if (pv.isMine)
-                {
+                if (pv.isMine) {
                     GameObject miniMapCamera = GameObject.Find("MiniMapCamera");
                     MiniMapFollow follow = miniMapCamera.GetComponent<MiniMapFollow>();
                     follow.target = player;
@@ -101,21 +90,17 @@ public class NetworkManager : Photon.MonoBehaviour
         }
     }
 
-    void OnLeftRoom()
-    {
+    void OnLeftRoom() {
 
     }
     #endregion
 
-    public void acceptInvitation()
-    {
+    public void acceptInvitation() {
         this.joinGame(null);
     }
 
-    void OnLevelWasLoaded(int level)
-    {
-        if (level == 3)
-        {
+    void OnLevelWasLoaded(int level) {
+        if (level == 3) {
             //mainScene
             this.roomToJoin = "Game";
             PhotonNetwork.LeaveRoom();
