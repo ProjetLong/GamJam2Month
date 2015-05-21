@@ -83,14 +83,16 @@ public class User : Character
 
     public void updateCombinaison(Combinaison newCombinaison)
     {
-        currentCombinaison = newCombinaison;
+        setCurrentCombinaison(newCombinaison);
+        StopCoroutine("combinaisonLifeCoroutine");
         StartCoroutine("combinaisonLifeCoroutine");
         Debug.Log(this.currentCombinaison.ToString());
     }
 
     public void combinaisonTransfered()
     {
-        this.currentCombinaison = null;
+        setCurrentCombinaison(new Combinaison(this.element));
+
         StopCoroutine("combinaisonLifeCoroutine");
     }
 
@@ -98,6 +100,16 @@ public class User : Character
     {
         yield return new WaitForSeconds(TweakManager.Instance.combinaisonTimeToLive);
 
-        this.currentCombinaison = null;
+        this.setCurrentCombinaison(null);
+    }
+
+    [RPC]
+    public void setCurrentCombinaison(Combinaison newCombinaison)
+    {
+        this.currentCombinaison = newCombinaison;
+        if (this.photonView.isMine)
+        {
+            this.photonView.RPC("setCurrentCombinaison", PhotonTargets.Others, newCombinaison);
+        }
     }
 }
