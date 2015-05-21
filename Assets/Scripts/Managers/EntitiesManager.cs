@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class EntitiesManager : Photon.MonoBehaviour
+public class EntitiesManager : MonoBehaviour
 {
     private static EntitiesManager instance;
     public static EntitiesManager Instance
@@ -24,14 +24,9 @@ public class EntitiesManager : Photon.MonoBehaviour
 
     public List<GameObject> spawnedZombies;
 
-    [RPC]
     public void newZombieSpawned(GameObject spawnedZombie)
     {
         spawnedZombies.Add(spawnedZombie);
-        if (this.photonView.isMine)
-        {
-            this.photonView.RPC("newZombieSpawned", PhotonTargets.OthersBuffered, spawnedZombie);
-        }
     }
 
     public void zombieDied(GameObject deadZombie)
