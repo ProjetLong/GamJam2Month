@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+[System.Serializable]
 class AirPattern : IShootPattern
 {
     public IEnumerator shoot(Transform canon)
