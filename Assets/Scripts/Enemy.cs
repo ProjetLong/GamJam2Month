@@ -102,10 +102,10 @@ public class Enemy : Character
 
     public override void takeDamage(Combinaison.ELEMENTS type, int amount)
     {
-        if (this.element == type)
-        {
+        //if (this.element == type)
+        //{
             base.takeDamage(type, amount);
-        }
+        //}
     }
 
     protected override void death()
