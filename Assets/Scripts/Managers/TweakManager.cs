@@ -6,7 +6,7 @@ public class TweakManager : MonoBehaviour
     [System.Serializable]
     public struct GUICombinaisonState
     {
-        public GameObject element;
+        public Color element;
         public Sprite pattern;
         public GameObject effect;
     }
@@ -47,5 +47,8 @@ public class TweakManager : MonoBehaviour
     public float combinaisonTimeToLive = 15.0f;
 
     //gui state
-    public GUICombinaisonState[] combinaisonStates;
+    public GUICombinaisonState fireCombinaisonState;
+    public GUICombinaisonState iceCombinaisonState;
+    public GUICombinaisonState airCombinaisonState;
+    public GUICombinaisonState poisonCombinaisonState;
 }
