@@ -92,6 +92,7 @@ public class PlayerShooting : Photon.MonoBehaviour
             GameObject bullet = Instantiate(TweakManager.Instance.bullet, this.transform.position, Quaternion.LookRotation(this.transform.forward)) as GameObject;
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.combinaison = new Combinaison(this.playerScript.element);
+            this.playerScript.currentCombinaison = bulletScript.combinaison;
         }
         else
         {
