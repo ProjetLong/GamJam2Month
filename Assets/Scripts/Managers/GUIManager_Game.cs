@@ -30,7 +30,7 @@ public class GUIManager_Game : MonoBehaviour
     private GameObject combinaisonState;
     private Image pattern;
     private GameObject effect;
-    private Material elementColor;
+    private Image elementColor;
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class GUIManager_Game : MonoBehaviour
         this.healthBar = healthBar.GetComponent<Slider>();
         this.healthText = healthBar.transform.FindChild("Text").GetComponent<Text>();
         combinaisonState = GameObject.Find("CombinaisonState");
-        this.elementColor = this.combinaisonState.transform.FindChild("Element").GetComponent<Renderer>().material;
+        this.elementColor = this.combinaisonState.transform.FindChild("Element").GetComponent<Image>();
         this.pattern = this.combinaisonState.transform.FindChild("Pattern").GetComponent<Image>();
     }
 
@@ -51,6 +51,13 @@ public class GUIManager_Game : MonoBehaviour
 
     public void updateCombinaisonState(Combinaison combinaison)
     {
+        if (combinaison == null)
+        {
+            this.elementColor.color = new Color(0, 0, 0, 0);
+            Destroy(this.effect.gameObject);
+            this.pattern.sprite = null;
+            return;
+        }
         int lvl = combinaison.getLevel();
         if (lvl >= 1)
         {
