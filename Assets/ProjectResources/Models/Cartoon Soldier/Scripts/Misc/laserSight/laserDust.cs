@@ -8,7 +8,7 @@ public class laserDust : MonoBehaviour
     private float life = 0.5f;
     private float lifeVariation = 1.0f;
     private float endTime;
-    private float length;
+    //private float length;
     private float scale;
     private float maxAlpha;
 
@@ -17,7 +17,7 @@ public class laserDust : MonoBehaviour
         startTime = Time.time;
         life = life + lifeVariation * Random.value;
         endTime = Time.time + life;
-        length = Random.Range(6, 8);
+        //length = Random.Range(6, 8);
         scale = Random.Range(0.11f, 0.14f);
         var laserColor = new Color(0, 0, 0);
         renderer.material.SetColor("_TintColor", laserColor);

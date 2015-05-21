@@ -7,10 +7,10 @@ public class bulletHole : MonoBehaviour {
     public float size = 1.0f;
 
     private float destroyTime;
-    private float startTime;
+    //private float startTime;
 
     void Start(){
-	    startTime = Time.time;
+	    //startTime = Time.time;
 	    destroyTime = Time.time + life;
 	    int chooseId = Mathf.RoundToInt(Random.Range(0,materials.Length));
 	    renderer.material = materials[chooseId];

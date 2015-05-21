@@ -45,7 +45,7 @@ public class bulletTrace : MonoBehaviour {
 			    bulletHoleProperty bulletHolePropertyScript =  hit.transform.root.GetComponent<bulletHoleProperty>();
 			    GameObject extraPrefab = null;
 			    float holeSize = 1.0f;
-			    Material[] differentBulletMaterialArray;
+			    //Material[] differentBulletMaterialArray;
                 Material[] bulletMaterials = null;
 			    if (bulletHolePropertyScript != null){ //Bullet hole property.
 				    makeDust = bulletHolePropertyScript.dust;

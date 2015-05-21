@@ -15,6 +15,7 @@ public class EntitiesManager : MonoBehaviour
         if (EntitiesManager.instance == null)
         {
             EntitiesManager.instance = this;
+            //DontDestroyOnLoad (this);
         }
         else
         {

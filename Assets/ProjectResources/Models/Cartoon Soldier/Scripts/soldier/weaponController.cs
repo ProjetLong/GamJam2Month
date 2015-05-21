@@ -95,7 +95,7 @@ public class weaponController : MonoBehaviour
         }
         crosshairScript.accuracyLoss = accuracyLoss;
         accuracyLoss = Mathf.Max(accuracyLoss, 1.0f);
-        float accuracy = 1 / accuracyLoss;
+        //float accuracy = 1 / accuracyLoss;
         //gunSelectorScript.BroadcastMessage("SetAccuracy", accuracy, SendMessageOptions.DontRequireReceiver);
     }
 

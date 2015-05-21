@@ -3,12 +3,12 @@ using System.Collections;
 
 public class gunSelector : MonoBehaviour
 {
-    void Awake()
+    /*void Awake()
     {
         SelectWeapon(0);
-    }
+    }*/
 
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown("1"))
         {
@@ -18,9 +18,9 @@ public class gunSelector : MonoBehaviour
         {
             SelectWeapon(1);
         }
-    }
+    }*/
 
-    void SelectWeapon(int index)
+    /*void SelectWeapon(int index)
     {
         for (var i = 0; i < transform.childCount; i++)
         {
@@ -33,5 +33,5 @@ public class gunSelector : MonoBehaviour
                 transform.GetChild(i).gameObject.SetActiveRecursively(false);
             }
         }
-    }
+    }*/
 }
