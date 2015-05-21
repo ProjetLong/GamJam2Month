@@ -31,14 +31,22 @@ public class PlayerShooting : Photon.MonoBehaviour
 
             if (timer >= timeBetweenBullets && Time.timeScale != 0)
             {
-                if (!movementScript.isRunning) {
-                    if (Input.GetButton ("Fire1")) {
-                        this.shoot (false);
+                if (!movementScript.isRunning)
+                {
+                    if (Input.GetButton("Fire1"))
+                    {
+                        this.shoot(false);
                     }
-                    else if (Input.GetButton ("Fire2")) {
-                        if (this.playerScript.currentCombinaison != null
-                            && this.playerScript.currentCombinaison.getLevel () < 3) {
-                            this.shoot (true);
+                    else if (Input.GetButtonDown("Fire2"))
+                    {
+                        if (this.playerScript.currentCombinaison == null)
+                        {
+                            this.playerScript.currentCombinaison = new Combinaison();
+                        }
+
+                        if (this.playerScript.currentCombinaison.getLevel() < 3)
+                        {
+                            this.shoot(true);
                         }
                     }
                 }
@@ -110,11 +118,7 @@ public class PlayerShooting : Photon.MonoBehaviour
     {
         User user = GameObject.Find(username).GetComponent<User>();
 
-        if (this.playerScript.currentCombinaison == null)
-        {
-            this.playerScript.currentCombinaison = new Combinaison();
-        }
-
+        this.playerScript.currentCombinaison.levelUp(this.playerScript.element);
         user.updateCombinaison(this.playerScript.currentCombinaison);
         this.playerScript.combinaisonTransfered();
 

@@ -81,10 +81,9 @@ public class User : Character
             this.resources = 0;
     }
 
-    public void updateCombinaison(Combinaison oldCombinaison)
+    public void updateCombinaison(Combinaison newCombinaison)
     {
-        currentCombinaison = oldCombinaison;
-        currentCombinaison.levelUp(this.element);
+        currentCombinaison = newCombinaison;
         StartCoroutine("combinaisonLifeCoroutine");
         Debug.Log(this.currentCombinaison.ToString());
     }
