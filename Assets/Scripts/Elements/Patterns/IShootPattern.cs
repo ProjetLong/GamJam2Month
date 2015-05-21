@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public interface IShootPattern
+[System.Serializable]
+public abstract class IShootPattern
 {
-    IEnumerator shoot(Transform canon);
+    public abstract IEnumerator shoot(Transform canon);
 }

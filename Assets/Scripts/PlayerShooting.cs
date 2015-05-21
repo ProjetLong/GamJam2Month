@@ -41,7 +41,7 @@ public class PlayerShooting : Photon.MonoBehaviour
                     {
                         if (this.playerScript.currentCombinaison == null)
                         {
-                            this.playerScript.setCurrentCombinaison(new Combinaison(this.playerScript.element));
+                            this.playerScript.serializeForRPCCombinaison(new Combinaison(this.playerScript.element));
                         }
 
                         if (this.playerScript.currentCombinaison.getLevel() < 3)
@@ -120,13 +120,13 @@ public class PlayerShooting : Photon.MonoBehaviour
 
         if (this.playerScript.currentCombinaison == null)
         {
-            this.playerScript.setCurrentCombinaison(new Combinaison(this.playerScript.element));
+            this.playerScript.serializeForRPCCombinaison(new Combinaison(this.playerScript.element));
         }
         else
         {
             Combinaison lvlUpCombinaison = this.playerScript.currentCombinaison;
             lvlUpCombinaison.levelUp(this.playerScript.element);
-            this.playerScript.setCurrentCombinaison(lvlUpCombinaison);
+            this.playerScript.serializeForRPCCombinaison(lvlUpCombinaison);
         }
 
         user.updateCombinaison(this.playerScript.currentCombinaison);

@@ -11,7 +11,7 @@ public class IceEffect : IShotEffect
     public float interval = 1.0f;
     #endregion
 
-    public IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform)
+    public override IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform)
     {
         // We format the tweaked value
         slowRate /= 100.0f;

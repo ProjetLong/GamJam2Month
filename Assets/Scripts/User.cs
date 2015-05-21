@@ -83,7 +83,7 @@ public class User : Character
 
     public void updateCombinaison(Combinaison newCombinaison)
     {
-        setCurrentCombinaison(newCombinaison);
+        serializeForRPCCombinaison(newCombinaison);
         StopCoroutine("combinaisonLifeCoroutine");
         StartCoroutine("combinaisonLifeCoroutine");
         Debug.Log(this.currentCombinaison.ToString());
@@ -92,25 +92,83 @@ public class User : Character
 
     public void combinaisonTransfered()
     {
-        setCurrentCombinaison(new Combinaison(this.element));
+        serializeForRPCCombinaison(null);
 
         StopCoroutine("combinaisonLifeCoroutine");
     }
 
     private IEnumerator combinaisonLifeCoroutine()
     {
+        Debug.Log("Combinaison will die in " + TweakManager.Instance.combinaisonTimeToLive.ToString());
         yield return new WaitForSeconds(TweakManager.Instance.combinaisonTimeToLive);
 
-        this.setCurrentCombinaison(null);
+        this.serializeForRPCCombinaison(null);
+        Debug.Log(this.currentCombinaison);
+    }
+
+    public void serializeForRPCCombinaison(Combinaison newCombinaison)
+    {
+        Combinaison.ELEMENTS first = newCombinaison != null
+            ? newCombinaison.element
+            : Combinaison.ELEMENTS.COUNT;
+        Combinaison.ELEMENTS second = Combinaison.ELEMENTS.COUNT;
+        Combinaison.ELEMENTS third = Combinaison.ELEMENTS.COUNT;
+
+        // 2nd element
+        if (newCombinaison != null
+            && newCombinaison.effect != null)
+        {
+            if (newCombinaison.effect.GetType() == typeof(AirEffect))
+            {
+                second = Combinaison.ELEMENTS.AIR;
+            }
+            else if (newCombinaison.effect.GetType() == typeof(PoisonEffect))
+            {
+                second = Combinaison.ELEMENTS.POISON;
+            }
+            else if (newCombinaison.effect.GetType() == typeof(FireEffect))
+            {
+                second = Combinaison.ELEMENTS.FIRE;
+            }
+            else if (newCombinaison.effect.GetType() == typeof(IceEffect))
+            {
+                second = Combinaison.ELEMENTS.ICE;
+            }
+
+            // 3rd element
+            if (newCombinaison != null
+                && newCombinaison.pattern != null)
+            {
+                if (newCombinaison.pattern.GetType() == typeof(AirPattern))
+                {
+                    third = Combinaison.ELEMENTS.AIR;
+                }
+                else if (newCombinaison.pattern.GetType() == typeof(FirePattern))
+                {
+                    third = Combinaison.ELEMENTS.FIRE;
+                }
+                else if (newCombinaison.pattern.GetType() == typeof(IcePattern))
+                {
+                    third = Combinaison.ELEMENTS.ICE;
+                }
+                else if (newCombinaison.pattern.GetType() == typeof(PoisonPattern))
+                {
+                    third = Combinaison.ELEMENTS.POISON;
+                }
+            }
+        }
+
+        setCurrentCombinaison(first, second, third);
     }
 
     [RPC]
-    public void setCurrentCombinaison(Combinaison newCombinaison)
+    public void setCurrentCombinaison(Combinaison.ELEMENTS first,
+        Combinaison.ELEMENTS second, Combinaison.ELEMENTS third)
     {
-        this.currentCombinaison = newCombinaison;
+        this.currentCombinaison = new Combinaison(first, second, third);
         if (this.photonView.isMine)
         {
-            this.photonView.RPC("setCurrentCombinaison", PhotonTargets.Others, newCombinaison);
+            this.photonView.RPC("setCurrentCombinaison", PhotonTargets.Others, first, second, third);
         }
     }
 

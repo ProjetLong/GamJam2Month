@@ -8,7 +8,7 @@ public class PoisonEffect : IShotEffect
     public float duration = 0.0f;
     #endregion
 
-    public IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform)
+    public override IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform)
     {
         enemyScript.enterConfusion();
         yield return new WaitForSeconds(duration);

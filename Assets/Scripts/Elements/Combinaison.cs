@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class Combinaison
 {
+    [System.Serializable]
     public enum ELEMENTS { FIRE = 0, AIR, POISON, ICE, COUNT };
 
     #region Members
@@ -21,6 +22,24 @@ public class Combinaison
     public Combinaison(ELEMENTS userElement)
     {
         this.element = userElement;
+    }
+
+    public Combinaison(ELEMENTS firstLvlElement,
+        ELEMENTS secondLvlElement, ELEMENTS thirdLvlElement)
+    {
+        this.element = ELEMENTS.COUNT;
+
+        this.levelUp(firstLvlElement);
+
+        if (secondLvlElement != ELEMENTS.COUNT)
+        {
+            this.levelUp(secondLvlElement);
+
+            if (thirdLvlElement != ELEMENTS.COUNT)
+            {
+                this.levelUp(thirdLvlElement);
+            }
+        }
     }
 
     public int getLevel()
@@ -101,7 +120,7 @@ public class Combinaison
     {
         string resume = string.Format("Level: {0}, Element: {1}, Effect: {2}, Pattern: {3}",
             this.getLevel().ToString(),
-            this.element != null ? this.element.ToString() : "none",
+            this.element != ELEMENTS.COUNT ? this.element.ToString() : "none",
             this.effect != null ? this.effect.ToString() : "none",
             this.pattern != null ? this.pattern.ToString() : "none");
 
