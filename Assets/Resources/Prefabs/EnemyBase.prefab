@@ -13,7 +13,7 @@ GameObject:
   - 136: {fileID: 13600000}
   - 195: {fileID: 19513536}
   - 95: {fileID: 9512558}
-  - 114: {fileID: 11435742}
+  - 114: {fileID: 11419964}
   m_Layer: 9
   m_Name: EnemyBase
   m_TagString: Enemy
@@ -1547,7 +1547,7 @@ MonoBehaviour:
   target: {fileID: 0}
   playerTarget: {fileID: 0}
   attackCooldown: 1.5
---- !u!114 &11435742
+--- !u!114 &11419964
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

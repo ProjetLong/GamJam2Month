@@ -3,8 +3,6 @@ using System.Collections;
 
 public abstract class Character : Photon.MonoBehaviour
 {
-
-
     #region Members
     public int health;
     public int maxHealth = 100;
@@ -19,6 +17,7 @@ public abstract class Character : Photon.MonoBehaviour
     public Combinaison.ELEMENTS element;
 
     #endregion
+
     protected virtual void Start()
     {
         if (this.health == 0)
@@ -39,27 +38,30 @@ public abstract class Character : Photon.MonoBehaviour
         this.transform.Translate(this.transform.forward * this.speed * this.speedRate * tpf, Space.World);
     }
 
-    public void takeDamage(Combinaison.ELEMENTS type, int amount)
+    public virtual void takeDamage(Combinaison.ELEMENTS type, int amount)
     {
-        this.modifyHealth(amount);
-        if (this.damageTextPrefab != null)
+        if (this.isAlive())
         {
-            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-            pos.x = Mathf.Clamp(pos.x, 0.05f, 0.95f); // clamp position to screen to ensure
-            pos.y = Mathf.Clamp(pos.y, 0.05f, 0.9f); // the string will be visible
-            pos.z = 0.0f;
-            GameObject damageText = Instantiate(this.damageTextPrefab, pos, Quaternion.identity) as GameObject;
-            damageText.GetComponent<DamageText>().setValue(amount);
-        }
-        if (!isAlive())
-        {
-            this.death();
+            this.modifyHealth(amount);
+            if (this.damageTextPrefab != null)
+            {
+                Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+                pos.x = Mathf.Clamp(pos.x, 0.05f, 0.95f); // clamp position to screen to ensure
+                pos.y = Mathf.Clamp(pos.y + 0.2f, 0.05f, 0.9f); // the string will be visible
+                pos.z = 0.0f;
+                GameObject damageText = Instantiate(this.damageTextPrefab, pos, Quaternion.identity) as GameObject;
+                damageText.GetComponent<DamageText>().setValue(amount);
+            }
+            if (!isAlive())
+            {
+                this.death();
+            }
         }
     }
 
     [RPC]
-    protected virtual void modifyHealth(int amount) {
-        Debug.Log (health + " " + amount);
+    protected virtual void modifyHealth(int amount)
+    {
         this.health = Mathf.Clamp(this.health - amount, 0, this.maxHealth);
 
         if (this.photonView.isMine)

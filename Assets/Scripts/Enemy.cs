@@ -29,10 +29,9 @@ public class Enemy : Character
         this.navAgent.angularSpeed = this.rotationSpeed;
     }
 
-    // Update is called once per frame
-    void Update() {
-        Debug.Log (canAttack);
-        if (hasTarget())
+    void Update()
+    {
+        if (isAlive() && hasTarget())
         {
             //facing target
             //Vector3 targetPostition = new Vector3(target.position.x, this.transform.position.y, target.position.z);
@@ -101,13 +100,22 @@ public class Enemy : Character
         this.canAttack = true;
     }
 
+    public override void takeDamage(Combinaison.ELEMENTS type, int amount)
+    {
+        if (this.element == type)
+        {
+            base.takeDamage(type, amount);
+        }
+    }
+
     protected override void death()
     {
         base.death();
+        this.navAgent.enabled = false;
         this.anim.SetTrigger("isDead");
 
         EntitiesManager.Instance.zombieDied(this.gameObject);
-        Destroy(this.gameObject, 2.0f);
+        Destroy(this.gameObject, 4.0f);
     }
 
     void OnTriggerEnter(Collider other)

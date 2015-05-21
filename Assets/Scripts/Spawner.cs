@@ -21,11 +21,15 @@ public abstract class Spawner : MonoBehaviour
 
     protected virtual void spawn()
     {
-        GameObject spawned = Instantiate(this.toSpawn, Vector3.up * 5, Quaternion.identity) as GameObject;
-        spawned.transform.parent = this.transform;
-        spawned.transform.position = this.transform.position;
-        spawned.transform.rotation = this.transform.rotation;
+        if (PhotonNetwork.isMasterClient)
+        {
+            GameObject spawned = PhotonNetwork.Instantiate("Prefabs/" + this.toSpawn.name, this.transform.position + this.transform.up * 2, this.transform.rotation, 0) as GameObject;
+            spawned.transform.parent = this.transform;
+            spawned.transform.position = this.transform.position;
+            spawned.transform.rotation = this.transform.rotation;
 
-        EntitiesManager.Instance.newZombieSpawned(spawned);
+            EntitiesManager.Instance.newZombieSpawned(spawned);
+        }
+
     }
 }
