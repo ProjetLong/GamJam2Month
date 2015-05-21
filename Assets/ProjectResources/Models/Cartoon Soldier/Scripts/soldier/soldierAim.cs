@@ -99,7 +99,7 @@ public class soldierAim : MonoBehaviour {
 	    Quaternion spine1LocalRotation = spine1.localRotation;
 	    Quaternion spine2LocalRotation = spine2.localRotation;
 	    //Aiming.
-	    float characterYRotation = transform.rotation.eulerAngles.y;
+	    //float characterYRotation = transform.rotation.eulerAngles.y;
 	    float spineYRotation = spine1.rotation.eulerAngles.y + 60;
 	    if (soldierCamera != null){
 		    cameraYRotation = soldierCamera.rotation.eulerAngles.y;

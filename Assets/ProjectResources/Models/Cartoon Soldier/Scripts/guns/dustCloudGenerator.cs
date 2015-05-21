@@ -6,7 +6,7 @@ public class dustCloudGenerator : MonoBehaviour
     GameObject dustCloudPrefab;
     float rate = 8.0f;
     Material[] materials;
-    bool on = true;
+    //bool on = true;
     float life = 0.3f;
 
     private float nextdustCloudTime;

@@ -80,17 +80,17 @@ public class soldierAnimation : MonoBehaviour {
 	    }
 	    float lastHitTime = 0;
 	    Vector3 hitDirection = Vector3.zero;
-	    float health;
+	    //float _health;
 	    float deathTime = 0;
 	    if (healthScript != null){
 		    lastHitTime = healthScript.GetLastHitTime();
 		    hitDirection = healthScript.GetHitDirection();
-		    health = healthScript.GetHealth();
+		    //_health = healthScript.GetHealth();
 		    deathTime = healthScript.GetDeathTime();
 	    }
 	    //Velocity calculation.
 	    Vector3 velocity = (transform.position - lastPosition) / Time.deltaTime; //Units per second.
-	    float previousVerticalSpeed = verticalSpeed;
+	    //float previousVerticalSpeed = verticalSpeed;
 	    verticalSpeed = (transform.position.y - lastPosition.y) / Time.deltaTime;
 	    float overallSpeed = (transform.position - lastPosition).magnitude / Time.deltaTime;
 	    lastPosition = transform.position;
@@ -151,7 +151,7 @@ public class soldierAnimation : MonoBehaviour {
 	    else{
 		    landingBlend = 0.0f;
 		    landingDuration = 0.0f;
-		    float landingAnimationStartTime = 0.0f;
+		    //float landingAnimationStartTime = 0.0f;
 		    landingInhibit = 1.0f;
 	    }
 	    var idleBlend = idleBlendCurve.Evaluate(Mathf.Abs(forwardSpeed) + Mathf.Abs(strafeSpeed)); //Idle blend.
@@ -332,7 +332,7 @@ public class soldierAnimation : MonoBehaviour {
 	    }
 	    //Animation speed.
 	    float animationSpeed;
-	    float strafeSpeedMultiplier = 1.4f; //Speed up strafe animations.
+	    //float strafeSpeedMultiplier = 1.4f; //Speed up strafe animations.
 	
 	    if(!backward){
 		    animationSpeed = animationSpeedCurve.Evaluate(overallSpeed);
@@ -356,8 +356,8 @@ public class soldierAnimation : MonoBehaviour {
 	    animation["soldierCrouchSpinLeft"].speed = turnAnimationSpeed;
 	    //Torso recoil when firing.
 	    if (firing){
-		    var spine1 = transform.Find("Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1");
-		    var spine2 = spine1.Find("Bip01 Spine2");
+		    //var spine1 = transform.Find("Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1");
+		    //var spine2 = spine1.Find("Bip01 Spine2");
             
 		    //spine1.localRotation.eulerAngles.z += Mathf.Sin(Time.time * 50) * 0.5f;
 		    //spine2.localRotation.eulerAngles.z += Mathf.Sin(Time.time * 50 - 1.0f) * 0.5f;
