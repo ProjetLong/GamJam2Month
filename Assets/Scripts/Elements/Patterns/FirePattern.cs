@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 class FirePattern : IShootPattern
 {
     public IEnumerator shoot(Transform canon)

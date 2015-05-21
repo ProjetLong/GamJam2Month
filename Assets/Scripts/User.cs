@@ -112,4 +112,15 @@ public class User : Character
             this.photonView.RPC("setCurrentCombinaison", PhotonTargets.Others, newCombinaison);
         }
     }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log(this.name + ": "
+                + (this.currentCombinaison != null
+                    ? this.currentCombinaison.ToString()
+                    : "no combinaison"));
+        }
+    }
 }
