@@ -10,7 +10,7 @@ public class FireEffect : IShotEffect
     public float interval = 1.0f;
     #endregion
 
-    public IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform)
+    public override IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform)
     {
         float endtime = Time.time + duration;
 

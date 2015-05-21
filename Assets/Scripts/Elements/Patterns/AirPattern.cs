@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 class AirPattern : IShootPattern
 {
-    public IEnumerator shoot(Transform canon)
+    public override IEnumerator shoot(Transform canon)
     {
         for (int i = 0; i < TweakManager.Instance.airNbBullets; i++)
         {

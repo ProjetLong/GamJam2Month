@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IShotEffect
+[System.Serializable]
+public abstract class IShotEffect
 {
-    IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform);
+    public abstract IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform);
 }

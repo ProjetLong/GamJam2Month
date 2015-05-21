@@ -5,7 +5,7 @@ using UnityEngine;
 class IcePattern : IShootPattern
 {
     private RaycastHit hitInfo;
-    public IEnumerator shoot(Transform canon)
+    public override IEnumerator shoot(Transform canon)
     {
         float duration = TweakManager.Instance.iceLaserDuration;
         GameObject bullet = GameObject.Instantiate(TweakManager.Instance.bullet) as GameObject;

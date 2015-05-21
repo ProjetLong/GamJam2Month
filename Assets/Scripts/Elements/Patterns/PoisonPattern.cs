@@ -5,7 +5,7 @@ using System.Collections;
 class PoisonPattern : IShootPattern
 {
     private RaycastHit hitInfo;
-    public IEnumerator shoot(Transform canon)
+    public override IEnumerator shoot(Transform canon)
     {
         if (Physics.Raycast(canon.position, canon.forward, out hitInfo))
         {

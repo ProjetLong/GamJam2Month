@@ -4,7 +4,7 @@ using System.Collections;
 [System.Serializable]
 class FirePattern : IShootPattern
 {
-    public IEnumerator shoot(Transform canon)
+    public override IEnumerator shoot(Transform canon)
     {
         for (int i = 0; i < TweakManager.Instance.fireNbBullets; i++)
         {

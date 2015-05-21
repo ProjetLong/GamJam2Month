@@ -10,7 +10,7 @@ public class AirEffect : IShotEffect
     public float explosionRadius = 1.0f;
     #endregion
 
-    public IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform)
+    public override IEnumerator applyEffect(Enemy enemyScript, Transform callerTransform)
     {
         enemyScript.GetComponent<Rigidbody>().AddExplosionForce(
             bumpForce, callerTransform.position, explosionRadius);
