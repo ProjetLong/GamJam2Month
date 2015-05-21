@@ -86,6 +86,7 @@ public class User : Character
         currentCombinaison = oldCombinaison;
         currentCombinaison.levelUp(this.element);
         StartCoroutine("combinaisonLifeCoroutine");
+        Debug.Log(this.currentCombinaison.ToString());
     }
 
     public void combinaisonTransfered()
