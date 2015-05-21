@@ -28,9 +28,9 @@ public class GUIManager_Game : MonoBehaviour
     private Slider healthBar;
     private Text healthText;
     private GameObject combinaisonState;
-    private GameObject pattern;
+    private Image pattern;
     private GameObject effect;
-    private GameObject element;
+    private Material elementColor;
 
     void Start()
     {
@@ -38,6 +38,8 @@ public class GUIManager_Game : MonoBehaviour
         this.healthBar = healthBar.GetComponent<Slider>();
         this.healthText = healthBar.transform.FindChild("Text").GetComponent<Text>();
         combinaisonState = GameObject.Find("CombinaisonState");
+        this.elementColor = this.combinaisonState.transform.FindChild("Element").GetComponent<Renderer>().material;
+        this.pattern = this.combinaisonState.transform.FindChild("Pattern").GetComponent<Image>();
     }
 
     public void setHealth(int currentHealth, int maxHealth)
@@ -50,19 +52,68 @@ public class GUIManager_Game : MonoBehaviour
     public void updateCombinaisonState(Combinaison combinaison)
     {
         int lvl = combinaison.getLevel();
-        switch (lvl)
+        if (lvl >= 1)
         {
-            case 0:
-                //not possible
-                break;
-            case 1:
-                /*Destroy(this.effect);
-                this.effect = Instantiate(TweakManager.Instance.)*/
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
+            switch (combinaison.element)
+            {
+                case Combinaison.ELEMENTS.AIR:
+                    this.elementColor.color = TweakManager.Instance.airCombinaisonState.element;
+                    break;
+                case Combinaison.ELEMENTS.FIRE:
+                    this.elementColor.color = TweakManager.Instance.fireCombinaisonState.element;
+                    break;
+                case Combinaison.ELEMENTS.ICE:
+                    this.elementColor.color = TweakManager.Instance.iceCombinaisonState.element;
+                    break;
+                case Combinaison.ELEMENTS.POISON:
+                    this.elementColor.color = TweakManager.Instance.poisonCombinaisonState.element;
+                    break;
+                default:
+                    this.elementColor.color = Color.gray;
+                    break;
+            }
+        }
+        if (lvl >= 2)
+        {
+            Destroy(this.effect.gameObject);
+            switch (combinaison.element)
+            {
+                case Combinaison.ELEMENTS.AIR:
+                    this.effect = Instantiate(TweakManager.Instance.airCombinaisonState.effect, Vector3.zero, Quaternion.identity) as GameObject;
+                    break;
+                case Combinaison.ELEMENTS.FIRE:
+                    this.effect = Instantiate(TweakManager.Instance.fireCombinaisonState.effect, Vector3.zero, Quaternion.identity) as GameObject;
+                    break;
+                case Combinaison.ELEMENTS.ICE:
+                    this.effect = Instantiate(TweakManager.Instance.iceCombinaisonState.effect, Vector3.zero, Quaternion.identity) as GameObject;
+                    break;
+                case Combinaison.ELEMENTS.POISON:
+                    this.effect = Instantiate(TweakManager.Instance.poisonCombinaisonState.effect, Vector3.zero, Quaternion.identity) as GameObject;
+                    break;
+            }
+            if (this.effect)
+                this.effect.transform.parent = this.combinaisonState.transform;
+        }
+        if (lvl >= 3)
+        {
+            switch (combinaison.element)
+            {
+                case Combinaison.ELEMENTS.AIR:
+                    this.pattern.sprite = TweakManager.Instance.airCombinaisonState.pattern;
+                    break;
+                case Combinaison.ELEMENTS.FIRE:
+                    this.pattern.sprite = TweakManager.Instance.fireCombinaisonState.pattern;
+                    break;
+                case Combinaison.ELEMENTS.ICE:
+                    this.pattern.sprite = TweakManager.Instance.iceCombinaisonState.pattern;
+                    break;
+                case Combinaison.ELEMENTS.POISON:
+                    this.pattern.sprite = TweakManager.Instance.poisonCombinaisonState.pattern;
+                    break;
+                default:
+                    this.pattern.sprite = null;
+                    break;
+            }
         }
     }
 }

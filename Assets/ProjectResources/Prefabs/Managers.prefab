@@ -668,7 +668,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432cc70607b1b984eac20c9da88b9780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soldierCamera: {fileID: 0}
   version: 0.1
   playerPrefab: {fileID: 189552, guid: 58b53c0193f37d743a7ad184d99ba724, type: 2}
   playerName: tacos
@@ -962,7 +961,22 @@ MonoBehaviour:
   airBulletInterval: .25
   iceLaserDuration: 10
   combinaisonTimeToLive: 15
-  combinaisonStates: []
+  fireCombinaisonState:
+    element: {r: 1, g: 0, b: 0, a: 1}
+    pattern: {fileID: 21300000, guid: 6faae029c3e805645be292c6e3c2fb16, type: 3}
+    effect: {fileID: 146498, guid: 7cbef1310963ee342bdc4a5b94daaa83, type: 2}
+  iceCombinaisonState:
+    element: {r: 1, g: 1, b: 1, a: 1}
+    pattern: {fileID: 21300000, guid: 017180d51f983f34b883360f010ec1d2, type: 3}
+    effect: {fileID: 194728, guid: 70ed6acccc9f00f47b94fbef402c4b8c, type: 2}
+  airCombinaisonState:
+    element: {r: .360294104, g: .497058779, b: 1, a: 0}
+    pattern: {fileID: 21300000, guid: cf1385c440db3114f8fdf5253c2354f7, type: 3}
+    effect: {fileID: 150910, guid: 6e0f4c1699d481c4bad6cdc13c855a2d, type: 2}
+  poisonCombinaisonState:
+    element: {r: 1, g: 0, b: .848275661, a: 0}
+    pattern: {fileID: 21300000, guid: bdf15a592b7ff064995daefb5e1ce263, type: 3}
+    effect: {fileID: 120792, guid: 66b67447901f9af4cad4b01cfc1ef887, type: 2}
 --- !u!114 &11483384
 MonoBehaviour:
   m_ObjectHideFlags: 1
