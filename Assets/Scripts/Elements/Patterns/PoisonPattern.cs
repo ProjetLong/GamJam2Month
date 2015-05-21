@@ -17,6 +17,8 @@ class PoisonPattern : IShootPattern
             spawnPosition.y = 0.0f;
             //TODO: spawn 
             GameObject poison = GameObject.Instantiate(TweakManager.Instance.poisonEffect, spawnPosition, Quaternion.identity) as GameObject;
+            PlayerShooting shootScript = canon.GetComponent<PlayerShooting>();
+            poison.GetComponent<AOE>().combinaison = shootScript.playerScript.currentCombinaison;
             GameObject.Destroy(poison, TweakManager.Instance.poisonDuration);
         }
         yield return null;
