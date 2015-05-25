@@ -158,14 +158,14 @@ public class User : Character
             }
         }
 
-        setCurrentCombinaison(first, second, third);
+        setCurrentCombinaison((int)first, (int)second, (int)third);
     }
 
     [RPC]
-    public void setCurrentCombinaison(Combinaison.ELEMENTS first,
-        Combinaison.ELEMENTS second, Combinaison.ELEMENTS third)
+    public void setCurrentCombinaison(int first, int second, int third)
     {
-        this.currentCombinaison = new Combinaison(first, second, third);
+        this.currentCombinaison = new Combinaison((Combinaison.ELEMENTS)first,
+            (Combinaison.ELEMENTS)second, (Combinaison.ELEMENTS)third);
         if (this.photonView.isMine)
         {
             this.photonView.RPC("setCurrentCombinaison", PhotonTargets.Others, first, second, third);
